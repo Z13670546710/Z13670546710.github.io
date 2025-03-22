@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>时空侦探</title>
+    <style>
+        :root {
+            --primary: #00ffd5;
+            --secondary: #7b61ff;
+            --bg: radial-gradient(circle at center, #0a192f 0%, #020617 100%);
+            --glass: rgba(255, 255, 255, 0.05);
+            --text: rgba(255, 255, 255, 0.9);
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.8;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .scene {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            width: min(100%, 720px);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .scene::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent 20%,
+                var(--primary) 40%,
+                transparent 60%
+            );
+            animation: rotate 6s linear infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .scene:hover {
+            transform: translateY(-4px);
+        }
+        
+        .content {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .choices {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        button {
+            background: linear-gradient(145deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                120deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 255, 213, 0.2);
+        }
+        
+        button:hover::before {
+            opacity: 1;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .progress {
+            width: min(100%, 720px);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: -4px;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 16px var(--primary);
+        }
+        
+        .hint {
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .scene {
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+            
+            button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 8px var(--primary); }
+            50% { text-shadow: 0 0 16px var(--primary); }
+        }
+        
+        .important-text {
+            color: var(--primary);
+            font-weight: 600;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+        </style>
+</head>
+<body>
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div id="gameContainer"></div>
+
+<script>
+const gameData = {
+    currentScene: 0,
+    progress: 0,
+    inventory: [],
+    scenes: [
+        { // 场景0：开场
+            text: "【时空管理局 2077年】<br>全息屏幕突然亮起红色警报：<br>'检测到唐朝长安城时间线异常，请立即前往调查！'",
+            choices: [
+                { text: "装备时空穿梭服", next: 1 },
+                { text: "先检查设备状态", next: 1 }
+            ]
+        },
+        { // 场景1：穿越准备
+            text: "穿梭舱准备就绪，倒计时开始：<br>⚡能量核心：100%<br>📡定位坐标：长安西市",
+            choices: [
+                { text: "立即启动穿梭", next: 2 },
+                { text: "调整定位到皇城", next: 3 }
+            ]
+        },
+        { // 场景2：西市调查
+            text: "穿越到热闹的长安西市，商贩的叫卖声中突然传来尖叫！<br>🔍发现：地上有破碎的琉璃盏和...现代电池？",
+            choices: [
+                { text: "询问附近商人", next: 4 },
+                { text: "检测电池成分", next: 5 }
+            ]
+        },
+        { // 场景3：错误路线
+            text: "警告！皇城区域有强干扰场！<br>⚡能量核心骤降至30%",
+            choices: [
+                { text: "紧急返回基地", next: 0 },
+                { text: "冒险继续前进", next: 6 }
+            ]
+        },
+        { // 场景4：商人对话
+            text: "胡商紧张地说：<br>'刚才有个戴面具的人，说着奇怪的语言，买走了所有铜镜！'",
+            puzzle: {
+                question: "唐朝主要使用哪种镜子？",
+                options: ["铜镜", "玻璃镜", "青铜镜"],
+                correct: 0,
+                next: 7
+            }
+        },
+        { // 场景5：电池分析
+            text: "检测结果显示：<br>🔋电池生产日期：2075年<br>❗这是未来的科技产物！",
+            choices: [
+                { text: "追踪电池信号", next: 8 },
+                { text: "联系总部支援", next: 9 }
+            ]
+        }
+        // 更多场景可根据需要扩展...
+    ]
+};
+
+function updateProgress() {
+    const progress = (gameData.currentScene / gameData.scenes.length) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+}
+
+function renderScene(sceneId) {
+    const container = document.getElementById('gameContainer');
+    const scene = gameData.scenes[sceneId];
+    
+    let html = `<div class="scene">
+        <div class="content">${scene.text}</div>
+        <div class="choices">`;
+
+    if (scene.puzzle) { // 解谜场景
+        html += `<div class="hint">${scene.puzzle.question}</div>`;
+        scene.puzzle.options.forEach((option, index) => {
+            html += `<button onclick="checkAnswer(${sceneId}, ${index})">${option}</button>`;
+        });
+    } else { // 普通选择场景
+        scene.choices.forEach(choice => {
+            html += `<button onclick="nextScene(${choice.next})">${choice.text}</button>`;
+        });
+    }
+
+    html += `</div></div>`;
+    container.innerHTML = html;
+    updateProgress();
+}
+
+function checkAnswer(sceneId, selected) {
+    const puzzle = gameData.scenes[sceneId].puzzle;
+    if (selected === puzzle.correct) {
+        alert("验证正确！");
+        nextScene(puzzle.next);
+    } else {
+        alert("答案错误，请重新思考");
+        renderScene(sceneId); // 保持当前场景
+    }
+}
+
+function nextScene(sceneId) {
+    gameData.currentScene = sceneId;
+    renderScene(sceneId);
+}
+
+// 初始化游戏
+renderScene(0);
+</script>
+</body>
+</html>
