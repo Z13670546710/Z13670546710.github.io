@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* 初始状态 */
+        .slide-box {
+            width: 200px;
+            height: 100px;
+            background: #4CAF50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            left: -100%; /* 初始位置在左侧屏幕外 */
+            opacity: 0;  /* 初始透明 */
+        }
+
+        /* 动画效果 */
+        .slide-in {
+            animation: slide 1s forwards;
+        }
+
+        @keyframes slide {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            100% {
+                left: 0;
+                opacity: 1;
+            }
+        }
+
+        /* 容器样式 */
+        .container {
+            width: 100%;
+            overflow: hidden;
+            margin: 50px auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        /* 按钮样式 */
+        button {
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 自动播放动画 -->
+    <div class="container">
+        <div class="slide-box slide-in">自动滑入的Div</div>
+    </div>
+
+    <!-- 点击触发的动画 -->
+    <div class="container">
+        <div class="slide-box" id="triggerBox">点击滑入的Div</div>
+    </div>
+    <button onclick="triggerAnimation()">触发动画</button>
+
+    <script>
+        // 触发动画函数
+        function triggerAnimation() {
+            const box = document.getElementById('triggerBox');
+            box.style.animation = 'none'; // 重置动画
+            void box.offsetWidth; // 触发重绘
+            box.style.animation = 'slide 1s forwards';
+        }
+
+        // 自动播放后保持最终状态（forwards参数已实现）
+    </script>
+</body>
+</html>

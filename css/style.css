@@ -1,0 +1,228 @@
+body {
+    background-image: url('../images/bg1.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    margin: 0;
+    color: #fff;
+}
+
+:root {
+    --primary: #8B5A2B;
+    --secondary: #556B2F; 
+    --bg: radial-gradient(circle at center, #3E2723 0%, #1B1B1B 100%); 
+    --glass: rgba(255, 255, 255, 0.1);
+    --text: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.8;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scene {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    width: min(100%, 720px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.scene::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent 20%,
+        var(--primary) 40%,
+        transparent 60%
+    );
+    animation: rotate 6s linear infinite;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+.scene:hover {
+    transform: translateY(-4px);
+}
+
+.content {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.choices {
+    display: grid;
+    gap: 1rem;
+}
+
+button {
+    background: linear-gradient(145deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 90, 43, 0.3); /* 古铜色阴影 */
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.progress {
+    width: min(100%, 720px);
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 3px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: -4px;
+    width: 14px;
+    height: 14px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 16px var(--primary);
+}
+
+.hint {
+    color: var(--primary);
+    font-size: 0.95rem;
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--primary);
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+
+    .scene {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+
+    button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 8px var(--primary); }
+    50% { text-shadow: 0 0 16px var(--primary); }
+}
+
+.important-text {
+    color: var(--primary);
+    font-weight: 600;
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+/* 添加跳动动画 */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 从左到右滑入动画 */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#gameContainer {
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.slide-in {
+    animation: slideInFromLeft .5s ease-out forwards!important;
+}
+@keyframes slide {
+0% {
+    left: 0%;
+    opacity: 0;
+}
+100% {
+    left: -100%;
+    opacity: 1;
+}
+}
+.container{  animation: bounce 1.5s infinite ease-in-out;background-color: rgba(255, 255, 255, 0.3);border-radius: 20px;padding: 20px;text-align: center;max-width: 800px;position: relative;top:20%;transform: translateY(-50%);}
+.container h5{color: #8B5A2B;font-size: 30px;margin-bottom: 20px;}
+.container p{font-weight: bold;font-size: 20px;}
+.container a{text-decoration: none;color: #fff;background-color: #8B5A2B;padding: 10px 60px;border-radius: 10px;display: inline-block;margin: 20px;}
