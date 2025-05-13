@@ -196,7 +196,7 @@ button:hover {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-#questions-container{width: 90%;text-align: center;}
+#questions-container{width: 100%;text-align: center;}
 h1 {
     text-align: center;
     color: #2c3e50;
