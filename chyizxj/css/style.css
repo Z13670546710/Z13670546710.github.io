@@ -129,7 +129,7 @@ a,a:hover,a:active,a:visited,a:link,a:focus{-webkit-tap-highlight-color:rgba(0,0
 }
 .img-container {
     flex: 4; 
-    min-width: 120px;
+    min-width: 3.5rem;
     height: 100%;
     border-radius: 8px;
     overflow: hidden;
