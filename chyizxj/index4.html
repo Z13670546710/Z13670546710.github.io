@@ -172,11 +172,11 @@ function renderOptions(q, index) {
 function renderSortInput(q, index) {
     // 添加选项提示
     const optionsHint = q.options.map(opt => 
-        `<div style="margin: 5px 0; font-size: 18px;">${opt.label}. ${opt.text}</div>`
+        `<div style="margin: .05rem 0; font-size: 18px;">${opt.label}. ${opt.text}</div>`
     ).join('');
     
     return `
-        <div style="margin-bottom: 15px;">${optionsHint}</div>
+        <div style="margin-bottom: .15rem;">${optionsHint}</div>
         <input type="text" class="sort-input" 
                placeholder="请输入选项字母（如：${q.options.map(o => o.label).join(',')}）"
                data-index="${index}">
