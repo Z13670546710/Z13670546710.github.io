@@ -129,7 +129,7 @@ a,a:hover,a:active,a:visited,a:link,a:focus{-webkit-tap-highlight-color:rgba(0,0
 }
 .img-container {
     flex: 4; 
-    min-width: 3.5rem;
+    min-width: 120px;
     height: 100%;
     border-radius: 8px;
     overflow: hidden;
@@ -174,7 +174,7 @@ button:hover {
         /* flex-direction: column; */
     }
     .img-container {
-        height: 120px;
+        height: 3.5rem;
         width: 100%;
     }
     .text-container {
