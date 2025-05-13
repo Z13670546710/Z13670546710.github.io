@@ -171,7 +171,7 @@ button:hover {
 }
 @media (max-width: 480px) {
     .card-back {
-        flex-direction: column;
+       /* flex-direction: column;*/
     }
     .img-container {
         height: 120px;
