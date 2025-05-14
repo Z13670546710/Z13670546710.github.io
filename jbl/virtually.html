@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>吉卜力</title>
+</head>
+<body>
+        <div class="v_Mask">
+            <div class="con">
+                <div class="con_l">
+                   <div class="con_l_t">
+                        <h2>Behind the Scenes</h2>
+                        <video src="./images/v3.mp4" controls="controls" muted="muted" loop="loop"></video>
+                   </div>
+                   <div class="con_l_b">
+                       <h2>Director's Notes</h2>
+                        <div class="con_1">
+                                <p>"Spirited Away began with my desire to make a film for ten-year-old girls. I wanted to create a heroine who would be an ordinary girl, not someone extraordinary or with special abilities."</p>
+                                <p>"The bathhouse setting was inspired by a real bathhouse in my hometown, combined with traditional Japanese folklore about spirits and deities. I wanted to show how our traditions are being forgotten in modern Japan."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="con_r">
+                    <div class="con_r_t">
+                        <h2>Original Artwork</h2>
+                        <ul>
+                            <li>
+                                <img src="./images/v2_3.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div> 
+                    <div class="con_r_b">
+                        <h2>Story Background</h2>
+                       <div class="con_1">
+                            <p>Released in 2001, "Spirited Away" tells the story of Chihiro, a 10-year-old girl who enters a world of spirits after her parents are transformed into pigs. She must work at a bathhouse for spirits to find a way to free herself and her parents.</p>
+                        <p>The film explores themes of identity, courage, environmentalism, and the contrast between traditional values and modern consumerism. It remains Studio Ghibli's most commercially successful film and won the Academy Award for Best Animated Feature.</p>
+                        <p>The bathhouse setting serves as a microcosm of Japanese society, with its strict hierarchy and emphasis on hard work, while also incorporating elements of Shinto beliefs about spirits and purification.</p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="virtuallyHeader">
+        <div class="virtuallyHeader_M Width1440">
+            <div class="vLogo">
+                <img src="./images/logo.png" alt="">
+            </div>
+    
+            <div class="vCenter">Navigation</div>
+            <a class="returnHom" href="./index.html">Home</a>
+        </div>
+    </div>
+    <section class="photoMain">
+        <div class="v1">
+            <img src="./images/v1.jpg" alt="">
+        </div>
+        <div class="v2">
+            <img src="./images/v2.jpg" alt="">
+        </div>
+        <div class="v3">
+            <img src="./images/v3.jpg" alt="">
+        </div>
+    </section>
+    <div class="v_Footer">
+        <div class="btn1">Add your favorite exhibits to 'My Collection'</div>
+        <div class="btn2">Share on social media platforms</div>
+        <!-- <p>Horizontal scrolling recommendation for scenes/characters you may still like</p> -->
+    </div>
+    <style>
+            /* 添加遮罩动画 */
+            .v_Mask {
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(5px);
+            }
+            
+            .v_Mask.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            /* 内容入场动画 */
+            @keyframes contentEntrance {
+                0% {
+                    transform: translateY(20px) scale(0.95);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                }
+            }
+            
+            .v_Mask .con {
+                animation: contentEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                transform-origin: center bottom;
+                opacity: 0;
+            }
+            
+            /* 翻页效果 */
+            @keyframes pageFlip {
+                0% {
+                    transform: perspective(1000px) rotateX(-10deg) translateZ(50px);
+                }
+                100% {
+                    transform: perspective(1000px) rotateX(0) translateZ(0);
+                }
+            }
+            
+            .v_Mask .con_l,
+            .v_Mask .con_r {
+                transition: transform 0.6s ease;
+                transform-style: preserve-3d;
+            }
+            
+            .v_Mask .con_l:hover,
+            .v_Mask .con_r:hover {
+                transform: translateY(-5px) rotateZ(1deg);
+            }
+            </style>
+            
+            <script>
+            // 数据配置
+            const contentData = {
+                v1: {
+                    video: './images/v1.mp4',
+                    image: './images/v2_1.jpg',
+                    quotes: [
+                        `Castle in the Sky was inspired by my fascination with flying machines and ancient civilizations. I wanted to create a world where technology and nature existed in harmony before human greed corrupted it.`,
+                        `"The floating island of Laputa was influenced by Jonathan Swift's 'Gulliver's Travels,' but I reimagined it as a place where advanced technology was used to nurture rather than control nature."`
+                    ],
+                    story: [
+                        `Released in 1986 as Studio Ghibli's first official film, "Castle in the Sky" follows the adventure of Sheeta and Pazu as they search for the legendary floating city of Laputa while being pursued by government agents and air pirates.`,
+                        `The film explores themes of environmentalism, the dangers of advanced technology in the wrong hands, and the importance of preserving ancient wisdom. It established many visual and thematic elements that would become hallmarks of Miyazaki's work.`,
+                        `The world of "Castle in the Sky" blends 19th-century technology with fantasy elements, creating a unique steampunk aesthetic that influenced many subsequent works in animation and beyond`
+                    ]
+                },
+                v2: {
+                    video: './images/v2.mp4',
+                    image: './images/v2_2.jpg',
+                    quotes: [
+                        `"I wanted to create a film that depicts the joy of childhood and the wonders of nature. Totoro represents the spirit of the forest, a gentle guardian who appears to children with pure hearts."`,
+                        `"The inspiration came from my own childhood experiences in rural Japan, where the boundaries between reality and imagination seemed to blur among the trees and streams."`
+                    ],
+                    story: [
+                        `Released in 1988, "My Neighbor Totoro" follows the story of two young sisters, Satsuki and Mei, who move to the countryside with their father to be closer to their hospitalized mother. There, they discover magical forest spirits including the gentle giant Totoro.`,
+                        `The film explores themes of childhood innocence, the healing power of nature, and Japanese rural traditions. Totoro has since become an iconic character and the mascot of Studio Ghibli.`,
+                        `The film is notable for its peaceful pace, lack of antagonists, and its celebration of the wonder and mystery of the natural world as seen through children's eyes.`
+                    ]
+                },
+                v3: {
+                    video: './images/v3.mp4',
+                    image: './images/v2_3.jpg',
+                    quotes: [
+                        `"Spirited Away began with my desire to make a film for ten-year-old girls. I wanted to create a heroine who would be an ordinary girl, not someone extraordinary or with special abilities."`,
+                        `"The bathhouse setting was inspired by a real bathhouse in my hometown, combined with traditional Japanese folklore about spirits and deities. I wanted to show how our traditions are being forgotten in modern Japan."`
+                    ],
+                    story: [
+                        `Released in 2001, "Spirited Away" tells the story of Chihiro, a 10-year-old girl who enters a world of spirits after her parents are transformed into pigs. She must work at a bathhouse for spirits to find a way to free herself and her parents.`,
+                        `The film explores themes of identity, courage, environmentalism, and the contrast between traditional values and modern consumerism. It remains Studio Ghibli's most commercially successful film and won the Academy Award for Best Animated Feature.`,
+                        `The bathhouse setting serves as a microcosm of Japanese society, with its strict hierarchy and emphasis on hard work, while also incorporating elements of Shinto beliefs about spirits and purification.`
+                    ]
+                }
+            };
+            
+            // 事件绑定
+            document.querySelectorAll('.photoMain > div').forEach(item => {
+                item.addEventListener('click', function() {
+                    const target = this.classList[0]; // v1/v2/v3
+                    updateContent(target);
+                    showMask();
+                });
+            });
+            
+            // 更新内容函数
+            function updateContent(target) {
+                const data = contentData[target];
+                const con = document.querySelector('.v_Mask .con');
+                
+                // 更新视频
+                const video = con.querySelector('video');
+                video.src = data.video;
+                video.load();
+            
+                // 更新图片
+                con.querySelector('.con_r_t img').src = data.image;
+            
+                // 更新引言
+                const quoteContainer = con.querySelector('.con_l_b .con_1');
+                quoteContainer.innerHTML = data.quotes.map(p => `<p>${p}</p>`).join('');
+            
+                // 更新故事背景
+                const storyContainer = con.querySelector('.con_r_b .con_1');
+                storyContainer.innerHTML = data.story.map(p => `<p>${p}</p>`).join('');
+            }
+            
+            // 显示遮罩
+            function showMask() {
+                const mask = document.querySelector('.v_Mask');
+                mask.classList.add('active');
+                
+                // 重置动画
+                const con = mask.querySelector('.con');
+                con.style.animation = 'none';
+                setTimeout(() => {
+                    con.style.animation = 'contentEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                }, 50);
+            }
+            
+            // 关闭遮罩（点击遮罩背景）
+            document.querySelector('.v_Mask').addEventListener('click', function(e) {
+                if(e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+            
+            // 视频预加载（可选）
+            window.addEventListener('load', () => {
+                Object.values(contentData).forEach(data => {
+                    const video = document.createElement('video');
+                    video.src = data.video;
+                });
+            });
+            </script>
+</body>
+</html>
