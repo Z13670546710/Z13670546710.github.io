@@ -549,3 +549,5 @@
     overflow: hidden;
     margin: 0 auto;
 }
+.VideoList{}
+.VideoList video{margin: 0 auto;width: 70%;display: flex;margin-bottom: 60px;}
