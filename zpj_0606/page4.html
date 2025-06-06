@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="abstract-box">
+            <nav class="index_banner">
+                    <div class="slides-container">
+                        <div class="slide active">
+                            <img src="./images/page4/新媒体账号——驴驴爱吃醋_01.png">
+                        </div>
+                        <div class="slide">
+                            <img src="./images/page4/新媒体账号——驴驴爱吃醋_02.png">
+                        </div>
+                        <div class="slide">
+                            <img src="./images/page4/新媒体账号——驴驴爱吃醋_03.png">
+                        </div>
+                        <div class="slide">
+                                <img src="./images/page4/新媒体账号——驴驴爱吃醋_04.png">
+                            </div>
+                            <div class="slide">
+                                    <img src="./images/page4/新媒体账号——驴驴爱吃醋_05.png">
+                                </div>
+                    </div>
+                    <div class="pagination-dots"></div>
+                    <div class="button-next">›</div>
+                    <div class="button-prev">‹</div>
+            </nav>
+        </div>
+        <div style="text-align: center;">
+            <a href="./index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 返回作品集</a>
+        </div>
+    </div>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const config = {
+                    autoplay: true,      
+                    interval: 5000,     
+                    transition: 1000    
+                };
+            
+                const slider = document.querySelector('.lunbo_banner');
+                const slides = Array.from(document.querySelectorAll('.slide'));
+                const dotsContainer = document.querySelector('.pagination-dots');
+                let currentIndex = 0;
+                let autoPlayTimer;
+                function createPagination() {
+                    slides.forEach((_, index) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'pagination-dot' + (index === 0 ? ' active' : '');
+                        dot.addEventListener('click', () => goToSlide(index));
+                        dotsContainer.appendChild(dot);
+                    });
+                }
+            
+                function showSlide(index) {
+                    if (index >= slides.length) index = 0;
+                    if (index < 0) index = slides.length - 1;
+                    currentIndex = index;
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+                    Array.from(dotsContainer.children).forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+            
+                function nextSlide() {
+                    showSlide(currentIndex + 1);
+                }
+            
+                function prevSlide() {
+                    showSlide(currentIndex - 1);
+                }
+            
+                function goToSlide(index) {
+                    clearInterval(autoPlayTimer);
+                    showSlide(index);
+                    startAutoPlay();
+                }
+            
+                function startAutoPlay() {
+                    if (config.autoplay) {
+                        autoPlayTimer = setInterval(nextSlide, config.interval);
+                    }
+                }
+                document.querySelector('.button-next').addEventListener('click', () => {
+                    clearInterval(autoPlayTimer);
+                    nextSlide();
+                    startAutoPlay();
+                });
+            
+                document.querySelector('.button-prev').addEventListener('click', () => {
+                    clearInterval(autoPlayTimer);
+                    prevSlide();
+                    startAutoPlay();
+                });
+            
+                createPagination();
+                startAutoPlay();
+            
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight') nextSlide();
+                    if (e.key === 'ArrowLeft') prevSlide();
+                });
+            });
+            </script>
+</body>
+</html>
