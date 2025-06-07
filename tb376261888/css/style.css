@@ -291,8 +291,8 @@ footer .hover p{color: #5bbfba;}
 .p3_cart2Ul_t{}
 .p3_cart2Ul_t{}
 .p3_cart2Ul_t{}
-.p3_cart2Ul_t > img{width: 100%;height: 200px;}
-.p3_cart2Ul > li{margin-bottom: .2rem;background: #fff;box-shadow: 5px 5px 10px rgba(0,0,0,0.3);border-radius: .1rem;padding: .2rem;margin-bottom: .2rem;}
+.p3_cart2Ul_t > img{width: 100%;height: 800px;}
+.p3_cart2Ul > li{margin-bottom: .2rem;background: #fff;box-shadow: 5px 5px 10px rgba(0,0,0,0.3);border-radius: .1rem;padding: .2rem;margin-bottom: .2rem;width: 100%;}
 .progress-bar4{height: 8px;background: #a587c4;border-radius: 4px;overflow: hidden;margin-bottom: .1rem;width: 100%;margin-top: .1rem;}
 .page4_main_c_Cate .hover{background: #f8f3e7;
     border-radius: 10px;
