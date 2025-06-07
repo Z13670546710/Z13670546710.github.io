@@ -377,3 +377,6 @@ footer li a{display: flex;flex-wrap: wrap;justify-content: center;}
     opacity: 1;
     transform: translateY(0);
 }
+.indexMain .logo{display: inline-block;max-width: 600px;margin: 0 auto;display: flex;flex-wrap: wrap;justify-content: center;align-items: center;padding-top: 60px;}
+.indexMain .logo img{}
+.indexMain .logo p{width: 100%;text-align: center;color: #242440;font-size: 21px;}
