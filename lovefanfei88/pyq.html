@@ -283,28 +283,28 @@
                 
                 // 发布动态
                 function publishPost() {
-                    const content = postText.value.trim();
+                    // const content = postText.value.trim();
                     
-                    // 模拟发布成功
-                    alert('朋友圈发布成功！');
+                    // // 模拟发布成功
+                    // alert('朋友圈发布成功！');
                     
-                    // 清空表单
-                    postText.value = '';
-                    selectedImages = [];
-                    updateImagePreview();
-                    locationOption = 'no-location';
-                    visibilityOption = 'public';
-                    locationValue.textContent = '所在位置';
-                    visibilityValue.textContent = '公开';
-                    publishBtn.disabled = true;
+                    // // 清空表单
+                    // postText.value = '';
+                    // selectedImages = [];
+                    // updateImagePreview();
+                    // locationOption = 'no-location';
+                    // visibilityOption = 'public';
+                    // locationValue.textContent = '所在位置';
+                    // visibilityValue.textContent = '公开';
+                    // publishBtn.disabled = true;
                     
-                    // 重置模态框选择状态
-                    document.querySelectorAll('.modal-option').forEach(option => {
-                        option.classList.remove('selected');
-                    });
+                    // // 重置模态框选择状态
+                    // document.querySelectorAll('.modal-option').forEach(option => {
+                    //     option.classList.remove('selected');
+                    // });
                     
-                    document.querySelector('#locationModal .modal-option[data-value="no-location"]').classList.add('selected');
-                    document.querySelector('#visibilityModal .modal-option[data-value="public"]').classList.add('selected');
+                    // document.querySelector('#locationModal .modal-option[data-value="no-location"]').classList.add('selected');
+                    // document.querySelector('#visibilityModal .modal-option[data-value="public"]').classList.add('selected');
                 }
                 
                 // 页面加载完成后初始化
