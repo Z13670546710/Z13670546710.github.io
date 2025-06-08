@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息安全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu-bar">
+            <div class="menu-options">
+                <li><a href="./index.html">活动一</a></li>
+                <li><a href="./pyq.html">活动二</a></li>
+                <li class="hover"><a href="./pw.html">活动三  输入密码</a></li>
+                <li><a href="./power.html">活动三  密码强度检测</a></li>
+            </div>
+        </div>
+        <div class="pwMain">
+                <div class="level-nav">
+                        <button class="level-btn active" id="level1Btn">
+                            <i class="fas fa-key"></i> 第一关
+                        </button>
+                        <button class="level-btn locked" id="level2Btn">
+                            <i class="fas fa-lock"></i> 第二关
+                        </button>
+                        <button class="level-btn locked" id="level3Btn">
+                            <i class="fas fa-lock"></i> 第三关
+                        </button>
+                    </div>
+                    
+                    <div class="level-content">
+                        <!-- 第一关 -->
+                        <div class="level-panel active" id="level1">
+                            <h2 class="level-title">
+                                <span class="level-icon"><i class="fas fa-1"></i></span>
+                                第一关
+                            </h2>
+                            
+                            <div class="password-form">
+                                <div class="input-group">
+                                    <input type="password" class="password-input" id="password1" placeholder="请输入密码...">
+                                    <button class="submit-btn" id="submit1">
+                                        <i class="fas fa-paper-plane"></i> 提交
+                                    </button>
+                                    <button class="hint-btn" id="hint1">
+                                        <i class="fas fa-lightbulb"></i> 提示
+                                    </button>
+                                </div>
+                                
+                                <div class="status-message" id="message1"></div>
+                                
+                                <div class="hint-area" id="hintArea1" style="display: none;">
+                                    <h3><i class="fas fa-lightbulb"></i> 第一关提示</h3>
+                                    <p class="hint-content">这是一个非常简单的数字密码。提示：7个相同的数字，可能是最常用的密码之一？</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 第二关 -->
+                        <div class="level-panel" id="level2">
+                            <h2 class="level-title">
+                                <span class="level-icon"><i class="fas fa-2"></i></span>
+                                第二关
+                            </h2>
+                            
+                            <div class="password-form">
+                                <div class="input-group">
+                                    <input type="password" class="password-input" id="password2" placeholder="请输入密码...">
+                                    <button class="submit-btn" id="submit2">
+                                        <i class="fas fa-paper-plane"></i> 提交
+                                    </button>
+                                    <button class="hint-btn" id="hint2">
+                                        <i class="fas fa-lightbulb"></i> 提示
+                                    </button>
+                                </div>
+                                
+                                <div class="status-message" id="message2"></div>
+                                
+                                <div class="hint-area" id="hintArea2" style="display: none;">
+                                    <h3><i class="fas fa-lightbulb"></i> 第二关提示</h3>
+                                    <p class="hint-content">这个密码由字母和数字组成。提示：前三个字母是英文小写，后三个是相同的数字。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 第三关 -->
+                        <div class="level-panel" id="level3">
+                            <h2 class="level-title">
+                                <span class="level-icon"><i class="fas fa-3"></i></span>
+                                第三关
+                            </h2>
+                            
+                            <div class="password-form">
+                                <div class="input-group">
+                                    <input type="password" class="password-input" id="password3" placeholder="请输入密码...">
+                                    <button class="submit-btn" id="submit3">
+                                        <i class="fas fa-paper-plane"></i> 提交
+                                    </button>
+                                    <button class="hint-btn" id="hint3">
+                                        <i class="fas fa-lightbulb"></i> 提示
+                                    </button>
+                                </div>
+                                
+                                <div class="status-message" id="message3"></div>
+                                
+                                <div class="hint-area" id="hintArea3" style="display: none;">
+                                    <h3><i class="fas fa-lightbulb"></i> 第三关提示</h3>
+                                    <p class="hint-content">这是一个高强度安全密码。提示：包含大小写字母、数字和特殊符号，共8位。结构：三个大写字母 + 特殊符号 + 两个数字 + 斜杠 + 两个数字。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="success-message" id="successMessage" style="display: none; text-align: center; margin-top: 30px; padding: 20px; background: rgba(46, 204, 113, 0.2); border-radius: 15px; border: 1px solid rgba(46, 204, 113, 0.4);">
+                        <h2 style="color: #2ecc71; margin-bottom: 15px;"><i class="fas fa-trophy"></i> 恭喜！</h2>
+                        <p style="color: #ecf0f1; font-size: 1.2rem;">你已成功完成所有密码挑战！你的密码安全意识非常强！</p>
+                    </div>
+        </div>
+    </div>
+   
+    <script>
+            // 关卡状态
+            const levels = {
+                level1: {
+                    password: "6666666",
+                    unlocked: true,
+                    completed: false
+                },
+                level2: {
+                    password: "abc666",
+                    unlocked: false,
+                    completed: false
+                },
+                level3: {
+                    password: "Byy@73/52",
+                    unlocked: false,
+                    completed: false
+                }
+            };
+            
+            // DOM元素
+            const level1Btn = document.getElementById('level1Btn');
+            const level2Btn = document.getElementById('level2Btn');
+            const level3Btn = document.getElementById('level3Btn');
+            
+            const level1Panel = document.getElementById('level1');
+            const level2Panel = document.getElementById('level2');
+            const level3Panel = document.getElementById('level3');
+            
+            const password1Input = document.getElementById('password1');
+            const password2Input = document.getElementById('password2');
+            const password3Input = document.getElementById('password3');
+            
+            const submit1Btn = document.getElementById('submit1');
+            const submit2Btn = document.getElementById('submit2');
+            const submit3Btn = document.getElementById('submit3');
+            
+            const hint1Btn = document.getElementById('hint1');
+            const hint2Btn = document.getElementById('hint2');
+            const hint3Btn = document.getElementById('hint3');
+            
+            const hintArea1 = document.getElementById('hintArea1');
+            const hintArea2 = document.getElementById('hintArea2');
+            const hintArea3 = document.getElementById('hintArea3');
+            
+            const message1 = document.getElementById('message1');
+            const message2 = document.getElementById('message2');
+            const message3 = document.getElementById('message3');
+            
+            const progressBar = document.getElementById('progressBar');
+            const successMessage = document.getElementById('successMessage');
+            
+            // 初始化
+            function init() {
+                // 关卡按钮点击事件
+                level1Btn.addEventListener('click', () => switchLevel('level1'));
+                level2Btn.addEventListener('click', () => {
+                    if (levels.level1.completed) {
+                        switchLevel('level2');
+                    } else {
+                        alert("请先完成第一关！");
+                    }
+                });
+                level3Btn.addEventListener('click', () => {
+                    if (levels.level2.completed) {
+                        switchLevel('level3');
+                    } else {
+                        alert("请先完成第二关！");
+                    }
+                });
+                
+                // 提交按钮事件
+                submit1Btn.addEventListener('click', () => checkPassword('level1', password1Input.value));
+                submit2Btn.addEventListener('click', () => checkPassword('level2', password2Input.value));
+                submit3Btn.addEventListener('click', () => checkPassword('level3', password3Input.value));
+                
+                // 提示按钮事件
+                hint1Btn.addEventListener('click', () => toggleHint(hintArea1));
+                hint2Btn.addEventListener('click', () => toggleHint(hintArea2));
+                hint3Btn.addEventListener('click', () => toggleHint(hintArea3));
+                
+                // 输入框回车事件
+                password1Input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') checkPassword('level1', password1Input.value);
+                });
+                
+                password2Input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') checkPassword('level2', password2Input.value);
+                });
+                
+                password3Input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') checkPassword('level3', password3Input.value);
+                });
+                
+                // 更新进度条
+                updateProgress();
+            }
+            
+            // 切换关卡
+            function switchLevel(level) {
+                // 隐藏所有面板
+                level1Panel.classList.remove('active');
+                level2Panel.classList.remove('active');
+                level3Panel.classList.remove('active');
+                
+                // 移除所有按钮的active状态
+                level1Btn.classList.remove('active');
+                level2Btn.classList.remove('active');
+                level3Btn.classList.remove('active');
+                
+                // 显示当前面板
+                document.getElementById(level).classList.add('active');
+                
+                // 设置当前按钮为active
+                if (level === 'level1') level1Btn.classList.add('active');
+                if (level === 'level2') level2Btn.classList.add('active');
+                if (level === 'level3') level3Btn.classList.add('active');
+            }
+            
+            // 检查密码
+            function checkPassword(level, password) {
+                const messageElement = level === 'level1' ? message1 : 
+                                     level === 'level2' ? message2 : message3;
+                
+                if (password === levels[level].password) {
+                    // 密码正确
+                    messageElement.textContent = "密码正确！解锁下一关！";
+                    messageElement.className = "status-message success";
+                    levels[level].completed = true;
+                    
+                    // 解锁下一关
+                    if (level === 'level1') {
+                        levels.level2.unlocked = true;
+                        level2Btn.classList.remove('locked');
+                        level2Btn.innerHTML = '<i class="fas fa-key"></i> 第二关';
+                        setTimeout(() => switchLevel('level2'), 1500);
+                    } 
+                    else if (level === 'level2') {
+                        levels.level3.unlocked = true;
+                        level3Btn.classList.remove('locked');
+                        level3Btn.innerHTML = '<i class="fas fa-key"></i> 第三关';
+                        setTimeout(() => switchLevel('level3'), 1500);
+                    }
+                    else if (level === 'level3') {
+                        successMessage.style.display = 'block';
+                        successMessage.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // 更新进度条
+                    updateProgress();
+                    
+                    // 清空输入框
+                    if (level === 'level1') password1Input.value = '';
+                    if (level === 'level2') password2Input.value = '';
+                    if (level === 'level3') password3Input.value = '';
+                    
+                    // 添加动画效果
+                    const btn = level === 'level1' ? submit1Btn : 
+                               level === 'level2' ? submit2Btn : submit3Btn;
+                    btn.classList.add('pulse');
+                    setTimeout(() => btn.classList.remove('pulse'), 2000);
+                } else {
+                    // 密码错误
+                    messageElement.textContent = "密码错误，请再试一次！";
+                    messageElement.className = "status-message error";
+                    
+                    // 添加抖动效果
+                    const input = level === 'level1' ? password1Input : 
+                                 level === 'level2' ? password2Input : password3Input;
+                    input.style.animation = 'shake 0.5s';
+                    setTimeout(() => input.style.animation = '', 500);
+                }
+            }
+            
+            // 切换提示显示
+            function toggleHint(hintArea) {
+                if (hintArea.style.display === 'none') {
+                    hintArea.style.display = 'block';
+                    hintArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    hintArea.style.display = 'none';
+                }
+            }
+            
+            // 更新进度条
+            function updateProgress() {
+                const completed = Object.values(levels).filter(l => l.completed).length;
+                const progress = (completed / 3) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // 更新按钮状态
+                if (levels.level1.completed) {
+                    level1Btn.innerHTML = '<i class="fas fa-check"></i> 已完成';
+                    level1Btn.style.background = 'rgba(46, 204, 113, 0.2)';
+                }
+                if (levels.level2.completed) {
+                    level2Btn.innerHTML = '<i class="fas fa-check"></i> 已完成';
+                    level2Btn.style.background = 'rgba(46, 204, 113, 0.2)';
+                }
+                if (levels.level3.completed) {
+                    level3Btn.innerHTML = '<i class="fas fa-check"></i> 已完成';
+                    level3Btn.style.background = 'rgba(46, 204, 113, 0.2)';
+                }
+            }
+            
+            // 添加抖动动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+                    20%, 40%, 60%, 80% { transform: translateX(10px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // 页面加载完成后初始化
+            window.addEventListener('DOMContentLoaded', init);
+        </script>
+</body>
+</html>

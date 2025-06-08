@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息安全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu-bar">
+            <div class="menu-options">
+                <li><a href="./index.html">活动一</a></li>
+                <li class="hover"><a href="./pyq.html">活动二</a></li>
+                <li><a href="./pw.html">活动三  输入密码</a></li>
+                <li><a href="./power.html">活动三  密码强度检测</a></li>
+            </div>
+        </div>
+        <div class="pyqMain">
+                <div class="content-area">
+                        <textarea class="post-text" id="postText" placeholder="分享新鲜事..."></textarea>
+                        
+                        <div class="image-upload">
+                            <label for="imageInput" class="upload-label" id="uploadLabel">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="upload-text">点击或拖拽图片到这里</div>
+                                <!-- <div class="upload-hint">最多可添加5张图片</div> -->
+                            </label>
+                            <input type="file" id="imageInput" accept="image/*" multiple>
+                            
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                        
+                        <div class="post-settings">
+                            <div class="setting-item" id="locationBtn">
+                                <div class="setting-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="setting-text">所在位置</div>
+                                <div class="setting-value" id="locationValue">不显示位置</div>
+                                <i class="fas fa-chevron-right chevron-icon"></i>
+                            </div>
+                            
+                            <div class="setting-item" id="visibilityBtn">
+                                <div class="setting-icon">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="setting-text">谁可以看</div>
+                                <div class="setting-value" id="visibilityValue">公开</div>
+                                <i class="fas fa-chevron-right chevron-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publish-section">
+                        <button class="publish-btn" id="publishBtn" disabled>发表</button>
+                    </div>
+        </div>
+        <div class="modal" id="locationModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">选择位置</div>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-options">
+                        <div class="modal-option selected" data-value="no-location">所在位置</div>
+                        <div class="modal-option" data-value="home">不显示位置</div>
+                        <!-- <div class="modal-option" data-value="office">公司办公室</div>
+                        <div class="modal-option" data-value="park">中央公园</div>
+                        <div class="modal-option" data-value="mall">城市购物中心</div>
+                        <div class="modal-option" data-value="cafe">星巴克咖啡</div> -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 可见性选择模态框 -->
+            <div class="modal" id="visibilityModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">选择可见范围</div>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-options">
+                        <div class="modal-option selected" data-value="public">公开</div>
+                        <!-- <div class="modal-option" data-value="private">私密</div> -->
+                        <div class="modal-option" data-value="partial">部分可见</div>
+                        <!-- <div class="modal-option" data-value="except">不给谁看</div> -->
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                // DOM元素
+                const postText = document.getElementById('postText');
+                const imageInput = document.getElementById('imageInput');
+                const uploadLabel = document.getElementById('uploadLabel');
+                const imagePreview = document.getElementById('imagePreview');
+                const locationBtn = document.getElementById('locationBtn');
+                const locationValue = document.getElementById('locationValue');
+                const visibilityBtn = document.getElementById('visibilityBtn');
+                const visibilityValue = document.getElementById('visibilityValue');
+                const publishBtn = document.getElementById('publishBtn');
+                const locationModal = document.getElementById('locationModal');
+                const visibilityModal = document.getElementById('visibilityModal');
+                const closeButtons = document.querySelectorAll('.close-modal');
+                
+                // 存储选择的图片
+                let selectedImages = [];
+                const MAX_IMAGES = 5;
+                
+                // 位置和可见性选项
+                let locationOption = 'no-location';
+                let visibilityOption = 'public';
+                
+                // 初始化
+                function init() {
+                    // 文本输入监听
+                    postText.addEventListener('input', validateForm);
+                    
+                    // 图片上传处理
+                    imageInput.addEventListener('change', handleImageUpload);
+                    
+                    // 拖拽上传功能
+                    uploadLabel.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        uploadLabel.style.borderColor = '#3498db';
+                        uploadLabel.style.backgroundColor = '#e3f2fd';
+                    });
+                    
+                    uploadLabel.addEventListener('dragleave', () => {
+                        uploadLabel.style.borderColor = '#bdc3c7';
+                        uploadLabel.style.backgroundColor = '#f8f9fa';
+                    });
+                    
+                    uploadLabel.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        uploadLabel.style.borderColor = '#bdc3c7';
+                        uploadLabel.style.backgroundColor = '#f8f9fa';
+                        
+                        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                            imageInput.files = e.dataTransfer.files;
+                            handleImageUpload();
+                        }
+                    });
+                    
+                    // 设置选项点击
+                    locationBtn.addEventListener('click', () => {
+                        locationModal.style.display = 'flex';
+                    });
+                    
+                    visibilityBtn.addEventListener('click', () => {
+                        visibilityModal.style.display = 'flex';
+                    });
+                    
+                    // 关闭模态框
+                    closeButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            locationModal.style.display = 'none';
+                            visibilityModal.style.display = 'none';
+                        });
+                    });
+                    
+                    // 位置选项选择
+                    document.querySelectorAll('#locationModal .modal-option').forEach(option => {
+                        option.addEventListener('click', () => {
+                            // 移除之前的选中状态
+                            document.querySelectorAll('#locationModal .modal-option').forEach(opt => {
+                                opt.classList.remove('selected');
+                            });
+                            
+                            // 设置新选中状态
+                            option.classList.add('selected');
+                            
+                            // 更新显示值
+                            locationOption = option.getAttribute('data-value');
+                            locationValue.textContent = option.textContent;
+                            
+                            // 关闭模态框
+                            locationModal.style.display = 'none';
+                        });
+                    });
+                    
+                    // 可见性选项选择
+                    document.querySelectorAll('#visibilityModal .modal-option').forEach(option => {
+                        option.addEventListener('click', () => {
+                            // 移除之前的选中状态
+                            document.querySelectorAll('#visibilityModal .modal-option').forEach(opt => {
+                                opt.classList.remove('selected');
+                            });
+                            
+                            // 设置新选中状态
+                            option.classList.add('selected');
+                            
+                            // 更新显示值
+                            visibilityOption = option.getAttribute('data-value');
+                            visibilityValue.textContent = option.textContent;
+                            
+                            // 关闭模态框
+                            visibilityModal.style.display = 'none';
+                        });
+                    });
+                    
+                    // 发布按钮
+                    publishBtn.addEventListener('click', publishPost);
+                }
+                
+                // 处理图片上传
+                function handleImageUpload() {
+                    const files = imageInput.files;
+                    
+                    if (files.length > 0) {
+                        for (let i = 0; i < files.length; i++) {
+                            if (selectedImages.length >= MAX_IMAGES) break;
+                            
+                            const file = files[i];
+                            
+                            if (file.type.match('image.*')) {
+                                const reader = new FileReader();
+                                
+                                reader.onload = (e) => {
+                                    selectedImages.push(e.target.result);
+                                    updateImagePreview();
+                                    validateForm();
+                                };
+                                
+                                reader.readAsDataURL(file);
+                            }
+                        }
+                    }
+                }
+                
+                // 更新图片预览
+                function updateImagePreview() {
+                    imagePreview.innerHTML = '';
+                    
+                    if (selectedImages.length > 0) {
+                        uploadLabel.style.display = 'none';
+                        
+                        selectedImages.forEach((img, index) => {
+                            const previewItem = document.createElement('div');
+                            previewItem.className = 'preview-item';
+                            
+                            const imgElement = document.createElement('img');
+                            imgElement.src = img;
+                            imgElement.className = 'preview-img';
+                            
+                            const removeBtn = document.createElement('div');
+                            removeBtn.className = 'remove-btn';
+                            removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                            removeBtn.addEventListener('click', () => {
+                                selectedImages.splice(index, 1);
+                                updateImagePreview();
+                                validateForm();
+                            });
+                            
+                            previewItem.appendChild(imgElement);
+                            previewItem.appendChild(removeBtn);
+                            imagePreview.appendChild(previewItem);
+                        });
+                        
+                        // 如果图片数量未达到上限，显示上传区域
+                        if (selectedImages.length < MAX_IMAGES) {
+                            uploadLabel.style.display = 'block';
+                        }
+                    } else {
+                        uploadLabel.style.display = 'block';
+                    }
+                }
+                
+                // 验证表单
+                function validateForm() {
+                    const hasText = postText.value.trim().length > 0;
+                    const hasImages = selectedImages.length > 0;
+                    
+                    publishBtn.disabled = !(hasText || hasImages);
+                }
+                
+                // 发布动态
+                function publishPost() {
+                    const content = postText.value.trim();
+                    
+                    // 模拟发布成功
+                    alert('朋友圈发布成功！');
+                    
+                    // 清空表单
+                    postText.value = '';
+                    selectedImages = [];
+                    updateImagePreview();
+                    locationOption = 'no-location';
+                    visibilityOption = 'public';
+                    locationValue.textContent = '所在位置';
+                    visibilityValue.textContent = '公开';
+                    publishBtn.disabled = true;
+                    
+                    // 重置模态框选择状态
+                    document.querySelectorAll('.modal-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    
+                    document.querySelector('#locationModal .modal-option[data-value="no-location"]').classList.add('selected');
+                    document.querySelector('#visibilityModal .modal-option[data-value="public"]').classList.add('selected');
+                }
+                
+                // 页面加载完成后初始化
+                window.addEventListener('DOMContentLoaded', init);
+            </script>
+</body>
+</html>

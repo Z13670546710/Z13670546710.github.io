@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息安全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu-bar">
+            <div class="menu-options">
+                <li class="hover"><a href="./index.html">活动一</a></li>
+                <li><a href="./pyq.html">活动二</a></li>
+                <li><a href="./pw.html">活动三  输入密码</a></li>
+                <li><a href="./power.html">活动三  密码强度检测</a></li>
+            </div>
+        </div>
+        
+        <!-- 三列布局 -->
+        <div class="columns-container">
+            <!-- 第一列 -->
+            <div class="column">
+                <div class="column-header">物理信息安全</div>
+                <div class="info-box">
+                    <div class="icon-container">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>单据</h3>
+                        <p>快递外卖单，飞机火车票</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="icon-container">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>设备</h3>
+                        <p>U盘，电脑里数据</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h3>防范措施</h3>
+                    <div class="prevention-box" id="preventionBox1"></div>
+                </div>
+            </div>
+            
+            <!-- 第二列 -->
+            <div class="column">
+                <div class="column-header">社交媒体安全</div>
+                <div class="info-box">
+                    <div class="icon-container">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>小红书朋友圈晒生活</h3>
+                        <p>分享生活需谨慎</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="icon-container">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>调查问卷</h3>
+                        <p>个人信息收集渠道</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h3>防范措施</h3>
+                    <div class="prevention-box" id="preventionBox2"></div>
+                </div>
+            </div>
+            
+            <!-- 第三列 -->
+            <div class="column">
+                <div class="column-header">网络安全</div>
+                <div class="info-box">
+                    <div class="icon-container">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>公共WIFI</h3>
+                        <p>公共网络安全风险</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="icon-container">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="text-content">
+                        <h3>密码安全</h3>
+                        <p>账户密码保护措施</p>
+                    </div>
+                </div>
+                <div class="prevention-section">
+                    <h3>防范措施</h3>
+                    <div class="prevention-box" id="preventionBox3"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 可拖动按钮 -->
+        <div class="action-buttons" id="actionButtons">
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-save"></i> 保存好
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-trash-alt"></i> 销毁
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-hdd"></i> 定期备份在移动硬盘或云盘
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-user-secret"></i> 化名
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-user-shield"></i> 少提供个人敏感信息
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-edit"></i> 慎重填写敏感数据
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-lock"></i> 设置复杂密码
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-wifi"></i> 使用商家提供的WIFI
+            </div>
+            <div class="action-btn" draggable="true">
+                <i class="fas fa-mobile-alt"></i> 使用手机流量
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // 拖拽功能实现
+        const actionButtons = document.querySelectorAll('.action-btn');
+        const preventionBoxes = document.querySelectorAll('.prevention-box');
+        
+        // 设置拖拽事件
+        actionButtons.forEach(button => {
+            button.addEventListener('dragstart', dragStart);
+            button.addEventListener('dragend', dragEnd);
+        });
+        
+        preventionBoxes.forEach(box => {
+            box.addEventListener('dragover', dragOver);
+            box.addEventListener('dragenter', dragEnter);
+            box.addEventListener('dragleave', dragLeave);
+            box.addEventListener('drop', drop);
+        });
+        
+        let draggedItem = null;
+        
+        function dragStart(e) {
+            draggedItem = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        
+        function dragEnd() {
+            this.classList.remove('dragging');
+        }
+        
+        function dragOver(e) {
+            e.preventDefault();
+            return false;
+        }
+        
+        function dragEnter(e) {
+            e.preventDefault();
+            this.classList.add('highlight');
+        }
+        
+        function dragLeave() {
+            this.classList.remove('highlight');
+        }
+        
+        function drop(e) {
+            e.preventDefault();
+            this.classList.remove('highlight');
+            
+            // 检查是否已存在相同的按钮
+            const existingButton = Array.from(this.children).find(
+                child => child.textContent === draggedItem.textContent
+            );
+            
+            if (!existingButton) {
+                // 创建新按钮（克隆）
+                const newButton = draggedItem.cloneNode(true);
+                newButton.classList.add('dropped-btn');
+                newButton.draggable = false;
+                newButton.style.cursor = 'default';
+                
+                // 添加移除功能
+                newButton.addEventListener('click', function() {
+                    this.remove();
+                });
+                
+                this.appendChild(newButton);
+            }
+            
+            return false;
+        }
+        
+        
+    </script>
+</body>
+</html>

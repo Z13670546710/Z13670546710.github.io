@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息安全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu-bar">
+            <div class="menu-options">
+                <li><a href="./index.html">活动一</a></li>
+                <li><a href="./pyq.html">活动二</a></li>
+                <li><a href="./pw.html">活动三  输入密码</a></li>
+                <li class="hover"><a href="./power.html">活动三  密码强度检测</a></li>
+            </div>
+        </div>
+        <div class="powerMain">
+                <div class="password-strength-container">
+                        <h2><i class="fas fa-shield-alt"></i> 密码强度检测</h2>
+                        <p style="color: #7f8c8d; margin: 15px 0 25px;">输入您的密码，我们将分析其强度并估算破解所需时间</p>
+                        
+                        <div class="password-input-group1">
+                            <input type="password" class="password-input1" id="passwordInput" placeholder="输入要检测的密码...">
+                            <button class="toggle-visibility" id="toggleVisibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="strength-meter1">
+                            <div class="strength-title1">
+                                <span>密码强度:</span>
+                                <span class="strength-value1" id="strengthValue">未检测</span>
+                            </div>
+                            <div class="strength-bar-container1">
+                                <div class="strength-bar1" id="strengthBar"></div>
+                            </div>
+                            <div class="strength-description" id="strengthDescription">
+                                请输入密码以查看强度分析
+                            </div>
+                        </div>
+                        
+                        <div class="crack-time">
+                            <h3><i class="fas fa-clock"></i> 破解时间预测</h3>
+                            <div class="crack-time-value" id="crackTimeValue">--</div>
+                            <div class="crack-time-description" id="crackTimeDescription">
+                                密码越复杂，破解所需时间越长
+                            </div>
+                        </div>
+                        
+                    </div>
+        </div>
+    </div>
+    
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const passwordInput = document.getElementById('passwordInput');
+                const toggleVisibility = document.getElementById('toggleVisibility');
+                const strengthBar = document.getElementById('strengthBar');
+                const strengthValue = document.getElementById('strengthValue');
+                const strengthDescription = document.getElementById('strengthDescription');
+                const crackTimeValue = document.getElementById('crackTimeValue');
+                const crackTimeDescription = document.getElementById('crackTimeDescription');
+                
+                // 切换密码可见性
+                toggleVisibility.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+                });
+                
+                // 密码强度检测
+                passwordInput.addEventListener('input', function() {
+                    const password = this.value;
+                    const strength = calculatePasswordStrength(password);
+                    updateStrengthIndicator(strength);
+                    const crackTime = estimateCrackTime(password);
+                    updateCrackTime(crackTime);
+                });
+                
+                // 计算密码强度
+                function calculatePasswordStrength(password) {
+                    if (password.length === 0) return 0;
+                    
+                    let strength = 0;
+                    
+                    // 长度评分
+                    strength += Math.min(password.length * 4, 40);
+                    
+                    // 字符多样性评分
+                    const hasLower = /[a-z]/.test(password);
+                    const hasUpper = /[A-Z]/.test(password);
+                    const hasDigit = /[0-9]/.test(password);
+                    const hasSpecial = /[^a-zA-Z0-9]/.test(password);
+                    
+                    const charTypes = [hasLower, hasUpper, hasDigit, hasSpecial].filter(Boolean).length;
+                    strength += (charTypes - 1) * 10;
+                    
+                    // 额外规则
+                    if (password.length < 8) strength -= 20;
+                    if (password.length > 12) strength += 10;
+                    if (/password|123456|qwerty/i.test(password)) strength = 10;
+                    
+                    // 限制在0-100之间
+                    return Math.max(0, Math.min(strength, 100));
+                }
+                
+                // 更新强度指示器
+                function updateStrengthIndicator(strength) {
+                    strengthBar.style.width = strength + '%';
+                    
+                    // 设置颜色和文本
+                    if (strength === 0) {
+                        strengthBar.style.backgroundColor = '#ecf0f1';
+                        strengthValue.textContent = '未检测';
+                        strengthValue.style.color = '#7f8c8d';
+                        strengthDescription.textContent = '请输入密码以查看强度分析';
+                        strengthDescription.style.color = '#7f8c8d';
+                    } else if (strength < 40) {
+                        strengthBar.style.backgroundColor = '#e74c3c';
+                        strengthValue.textContent = '弱';
+                        strengthValue.style.color = '#e74c3c';
+                        strengthDescription.textContent = '密码安全性不足，容易被破解';
+                        strengthDescription.style.color = '#e74c3c';
+                    } else if (strength < 70) {
+                        strengthBar.style.backgroundColor = '#f39c12';
+                        strengthValue.textContent = '中等';
+                        strengthValue.style.color = '#f39c12';
+                        strengthDescription.textContent = '密码安全性尚可，但仍有改进空间';
+                        strengthDescription.style.color = '#f39c12';
+                    } else {
+                        strengthBar.style.backgroundColor = '#2ecc71';
+                        strengthValue.textContent = '强';
+                        strengthValue.style.color = '#2ecc71';
+                        strengthDescription.textContent = '密码安全性高，继续保持';
+                        strengthDescription.style.color = '#2ecc71';
+                    }
+                }
+                
+                // 估算破解时间
+                function estimateCrackTime(password) {
+                    if (password.length === 0) return null;
+                    
+                    // 计算字符集大小
+                    let charsetSize = 0;
+                    if (/[a-z]/.test(password)) charsetSize += 26;
+                    if (/[A-Z]/.test(password)) charsetSize += 26;
+                    if (/[0-9]/.test(password)) charsetSize += 10;
+                    if (/[^a-zA-Z0-9]/.test(password)) charsetSize += 32;
+                    
+                    // 计算可能的组合数
+                    const combinations = Math.pow(charsetSize, password.length);
+                    
+                    // 假设每秒尝试10亿次（常见攻击速度）
+                    const seconds = combinations / 1e9;
+                    
+                    return seconds;
+                }
+                
+                // 更新破解时间显示
+                function updateCrackTime(seconds) {
+                    if (seconds === null) {
+                        crackTimeValue.textContent = '--';
+                        crackTimeDescription.textContent = '密码越复杂，破解所需时间越长';
+                        return;
+                    }
+                    
+                    let timeText = '';
+                    let description = '';
+                    
+                    if (seconds < 1) {
+                        timeText = '瞬间';
+                        description = '密码非常脆弱，可被立即破解';
+                    } else if (seconds < 60) {
+                        timeText = Math.round(seconds) + '秒';
+                        description = '密码脆弱，可被快速破解';
+                    } else if (seconds < 3600) {
+                        timeText = Math.round(seconds / 60) + '分钟';
+                        description = '密码强度不足，可在短时间内被破解';
+                    } else if (seconds < 86400) {
+                        timeText = Math.round(seconds / 3600) + '小时';
+                        description = '密码强度中等，需要一定时间破解';
+                    } else if (seconds < 31536000) {
+                        const days = Math.round(seconds / 86400);
+                        timeText = days + (days > 1 ? '天' : '天');
+                        description = '密码强度良好，需要较长时间破解';
+                    } else if (seconds < 3153600000) {
+                        const years = Math.round(seconds / 31536000);
+                        timeText = years + (years > 1 ? '年' : '年');
+                        description = '密码强度优秀，破解非常困难';
+                    } else {
+                        timeText = '数百年';
+                        description = '密码强度极高，几乎不可能被破解';
+                    }
+                    
+                    crackTimeValue.textContent = timeText;
+                    crackTimeDescription.textContent = description;
+                }
+                
+                // 示例密码展示
+                setTimeout(() => {
+                    passwordInput.value = 'MySecureP@ssw0rd!';
+                    passwordInput.dispatchEvent(new Event('input'));
+                }, 1000);
+            });
+        </script>
+</body>
+</html>
