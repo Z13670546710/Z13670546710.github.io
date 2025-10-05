@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f7fe 0%, #e3f2fd 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .visualization {
+            width: 100%;
+            height: 450px;
+            background: #f8fafc;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid #e1e8ed;
+        }
+        
+        #geometry-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #6a89cc 0%, #4a69bd 100%);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(106, 137, 204, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(106, 137, 204, 0.4);
+        }
+        
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .info {
+            text-align: center;
+            margin-top: 10px;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dfe6e9;
+            transition: all 0.3s ease;
+        }
+        
+        .step-dot.active {
+            background: #6a89cc;
+            transform: scale(1.2);
+        }
+        
+        .explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* 3D旋转动画样式 */
+        .rotating-half-circle {
+            transform-origin: 250px 250px;
+            transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        /* 左半圆样式 */
+        #left-half-circle {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* 完整圆样式 */
+        #full-circle {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* 球体动画样式 */
+        .sphere-circle {
+            fill: none;
+            stroke: #9b59b6;
+            stroke-width: 3;
+            opacity: 0;
+            transform-origin: 250px 250px;
+            transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .sphere-circle-2 {
+            fill: none;
+            stroke: #3498db;
+            stroke-width: 3;
+            opacity: 0;
+            transform-origin: 250px 250px;
+            transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .diagonal-axis {
+            stroke: #2ecc71;
+            stroke-width: 2;
+            stroke-dasharray: 5, 5;
+            opacity: 0;
+        }
+        
+        .diagonal-axis-2 {
+            stroke: #e74c3c;
+            stroke-width: 2;
+            stroke-dasharray: 5, 5;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>点->线->面->体</h1>
+       <!--  <p class="subtitle">观察线段围绕中心点旋转形成圆形的几何过程</p> -->
+        
+        <div class="visualization">
+            <svg id="geometry-svg" viewBox="0 0 500 500">
+                <!-- 坐标轴 -->
+                <line x1="50" y1="250" x2="450" y2="250" stroke="#e1e8ed" stroke-width="1.5" />
+                <line x1="250" y1="50" x2="250" y2="450" stroke="#e1e8ed" stroke-width="1.5" />
+                
+                <!-- 初始线段（水平放置） -->
+                <line id="initial-line" x1="150" y1="250" x2="350" y2="250" stroke="#6a89cc" stroke-width="5" />
+                
+                <!-- 旋转线段 -->
+                <line id="rotating-line" x1="250" y1="250" x2="350" y2="250" stroke="#6a89cc" stroke-width="5" opacity="0" />
+                
+                <!-- 竖着的直径 -->
+                <line id="vertical-diameter" x1="250" y1="150" x2="250" y2="350" stroke="#e74c3c" stroke-width="5" opacity="0" />
+                
+                <!-- 圆形轨迹 -->
+                <circle id="circle-path" cx="250" cy="250" r="100" fill="none" stroke="#e1e8ed" stroke-width="1.5" stroke-dasharray="5,5" opacity="0" />
+                
+                <!-- 最终圆形 -->
+                <circle id="final-circle" cx="250" cy="250" r="100" fill="none" stroke="#6a89cc" stroke-width="5" opacity="0" />
+                
+                <!-- 中心点 -->
+                <circle cx="250" cy="250" r="5" fill="#6a89cc" />
+                
+                <!-- 轨迹点 -->
+                <path id="trail-path" d="" fill="none" stroke="#6a89cc" stroke-width="4" opacity="0" />
+                
+                <!-- 右半圆 -->
+                <path id="right-half-circle" d="" fill="none" stroke="#2ecc71" stroke-width="5" opacity="0" class="rotating-half-circle" />
+                
+                <!-- 左半圆 -->
+                <path id="left-half-circle" d="" fill="none" stroke="#2ecc71" stroke-width="5" opacity="0" />
+                
+                <!-- 完整圆 -->
+                <circle id="full-circle" cx="250" cy="250" r="100" fill="none" stroke="#2ecc71" stroke-width="5" opacity="0" />
+                
+                <!-- 斜轴线（右下到左上） -->
+                <line id="diagonal-axis" x1="320" y1="320" x2="180" y2="180" class="diagonal-axis" />
+                
+                <!-- 斜轴线（左下到右上） -->
+                <line id="diagonal-axis-2" x1="180" y1="320" x2="320" y2="180" class="diagonal-axis-2" />
+                
+                <!-- 球体圆形（右下到左上） -->
+                <g id="sphere-circles"></g>
+                
+                <!-- 球体圆形（左下到右上） -->
+                <g id="sphere-circles-2"></g>
+            </svg>
+        </div>
+        
+        <div class="controls">
+            <button id="prev-btn" disabled style="display: none;">上一步</button>
+            <button id="next-btn">下一步</button>
+            <button id="reset-btn">重置</button>
+        </div>
+        
+        <div class="step-indicator">
+            <div class="step-dot active" id="step1-dot"></div>
+            <div class="step-dot" id="step2-dot"></div>
+            <div class="step-dot" id="step3-dot"></div>
+            <div class="step-dot" id="step4-dot"></div>
+            <div class="step-dot" id="step5-dot"></div>
+            <div class="step-dot" id="step6-dot"></div>
+            <div class="step-dot" id="step7-dot"></div>
+        </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const initialLine = document.getElementById('initial-line');
+            const rotatingLine = document.getElementById('rotating-line');
+            const verticalDiameter = document.getElementById('vertical-diameter');
+            const circlePath = document.getElementById('circle-path');
+            const finalCircle = document.getElementById('final-circle');
+            const trailPath = document.getElementById('trail-path');
+            const rightHalfCircle = document.getElementById('right-half-circle');
+            const leftHalfCircle = document.getElementById('left-half-circle');
+            const fullCircle = document.getElementById('full-circle');
+            const diagonalAxis = document.getElementById('diagonal-axis');
+            const diagonalAxis2 = document.getElementById('diagonal-axis-2');
+            const sphereCircles = document.getElementById('sphere-circles');
+            const sphereCircles2 = document.getElementById('sphere-circles-2');
+            const stepDots = document.querySelectorAll('.step-dot');
+            const infoText = document.getElementById('info-text');
+            
+            let currentStep = 1;
+            let animationId = null;
+            let angle = 0;
+            let trailPoints = [];
+            let sphereAnimationId = null;
+            let sphereAnimationId2 = null;
+            let existingCircles = []; // 存储已有的圆形
+            let existingCircles2 = []; // 存储第二组圆形
+            
+            // 球体动画参数
+            const sphereConfig = {
+                numCircles: 8,       // 圆形数量
+                rotationDuration: 1000, // 每个圆旋转持续时间(毫秒)
+                delayBetweenCircles: 2000 // 圆形之间的延迟时间(毫秒)
+            };
+            
+            function updateControls() {
+                prevBtn.disabled = currentStep === 1;
+                nextBtn.disabled = currentStep === 7;
+                
+                // 更新步骤指示器
+                stepDots.forEach((dot, index) => {
+                    if (index + 1 === currentStep) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                
+                
+                executeStepAnimation();
+            }
+            
+            function executeStepAnimation() {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+                
+                if (sphereAnimationId) {
+                    cancelAnimationFrame(sphereAnimationId);
+                    sphereAnimationId = null;
+                }
+                
+                if (sphereAnimationId2) {
+                    cancelAnimationFrame(sphereAnimationId2);
+                    sphereAnimationId2 = null;
+                }
+                
+                // 重置所有元素
+                initialLine.style.opacity = '0';
+                rotatingLine.style.opacity = '0';
+                verticalDiameter.style.opacity = '0';
+                circlePath.style.opacity = '0';
+                finalCircle.style.opacity = '0';
+                trailPath.style.opacity = '0';
+                trailPath.setAttribute('d', '');
+                rightHalfCircle.style.opacity = '0';
+                rightHalfCircle.setAttribute('d', '');
+                leftHalfCircle.style.opacity = '0';
+                leftHalfCircle.setAttribute('d', '');
+                fullCircle.style.opacity = '0';
+                diagonalAxis.style.opacity = '0';
+                diagonalAxis2.style.opacity = '0';
+                
+                // 重置3D变换
+                rightHalfCircle.style.transform = 'rotateY(0deg)';
+                
+                // 在第7步不清除第6步的圆形，其他步骤清除
+                if (currentStep !== 7) {
+                    sphereCircles.innerHTML = '';
+                    sphereCircles2.innerHTML = '';
+                    existingCircles = [];
+                    existingCircles2 = [];
+                }
+                
+                switch(currentStep) {
+                    case 1:
+                        initialLine.style.opacity = '1';
+                        trailPoints = [];
+                        break;
+                    case 2:
+                        rotatingLine.style.opacity = '1';
+                        circlePath.style.opacity = '1';
+                        trailPath.style.opacity = '1';
+                        startRotationAnimation();
+                        break;
+                    case 3:
+                        rotatingLine.style.opacity = '0';
+                        circlePath.style.opacity = '1';
+                        finalCircle.style.opacity = '1';
+                        trailPath.style.opacity = '1';
+                        break;
+                    case 4:
+                        verticalDiameter.style.opacity = '1';
+                        // 第四步只显示竖直径，不显示圆形
+                        break;
+                    case 5:
+                        verticalDiameter.style.opacity = '1';
+                        rightHalfCircle.style.opacity = '1';
+                        leftHalfCircle.style.opacity = '0';
+                        fullCircle.style.opacity = '0';
+                        startRightHalfCircleAnimation();
+                        break;
+                    case 6:
+                        // 球体效果动画 - 右下到左上
+                        circlePath.style.opacity = '1';
+                        diagonalAxis.style.opacity = '1';
+                        startSphereAnimation();
+                        break;
+                    case 7:
+                        // 球体效果动画 - 左下到右上，保留第6步的圆形
+                        circlePath.style.opacity = '1';
+                        diagonalAxis.style.opacity = '1';
+                        diagonalAxis2.style.opacity = '1';
+                        startSecondSphereAnimation();
+                        break;
+                }
+            }
+            
+            function startRotationAnimation() {
+                angle = 0;
+                trailPoints = [];
+                
+                function animate() {
+                    angle += 0.02;
+                    if (angle > Math.PI * 2) {
+                        angle = Math.PI * 2;
+                    }
+                    
+                    const radius = 100;
+                    const endX = 250 + radius * Math.cos(angle);
+                    const endY = 250 + radius * Math.sin(angle);
+                    
+                    rotatingLine.setAttribute('x2', endX);
+                    rotatingLine.setAttribute('y2', endY);
+                    
+                    // 添加轨迹点
+                    trailPoints.push(`${endX},${endY}`);
+                    
+                    // 更新轨迹路径
+                    if (trailPoints.length > 1) {
+                        let pathData = `M ${trailPoints[0]}`;
+                        for (let i = 1; i < trailPoints.length; i++) {
+                            pathData += ` L ${trailPoints[i]}`;
+                        }
+                        trailPath.setAttribute('d', pathData);
+                    }
+                    
+                    if (angle < Math.PI * 2) {
+                        animationId = requestAnimationFrame(animate);
+                    } else {
+                        if (currentStep === 2) {
+                            currentStep = 3;
+                            updateControls();
+                        }
+                    }
+                }
+                
+                animationId = requestAnimationFrame(animate);
+            }
+            
+            function startRightHalfCircleAnimation() {
+                // 创建右半圆路径
+                const centerX = 250;
+                const centerY = 250;
+                const radius = 100;
+                
+                // 创建右半圆（从 -90° 到 90°）
+                let rightPathData = `M ${centerX} ${centerY - radius}`; // 从顶部开始
+                
+                // 添加右半圆部分（从 -90° 到 90°）
+                for (let i = 0; i <= 180; i++) {
+                    const angle = -Math.PI/2 + (i/180) * Math.PI;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    rightPathData += ` L ${x} ${y}`;
+                }
+                
+                rightHalfCircle.setAttribute('d', rightPathData);
+                
+                // 创建左半圆路径（从 90° 到 270°）
+                let leftPathData = `M ${centerX} ${centerY - radius}`; // 从顶部开始
+                
+                // 添加左半圆部分（从 90° 到 270°）
+                for (let i = 0; i <= 180; i++) {
+                    const angle = Math.PI/2 + (i/180) * Math.PI;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    leftPathData += ` L ${x} ${y}`;
+                }
+                
+                leftHalfCircle.setAttribute('d', leftPathData);
+                
+                // 开始3D旋转动画 - 从左向右旋转360度
+                let rotationAngle = 0;
+                const rotationSpeed = 2; // 旋转速度
+                
+                function animateRotation() {
+                    rotationAngle += rotationSpeed;
+                    if (rotationAngle > 360) {
+                        rotationAngle = 360;
+                    }
+                    
+                    // 应用3D旋转效果
+                    rightHalfCircle.style.transform = `rotateY(${rotationAngle}deg)`;
+                    
+                    // 当旋转到180度时，显示左半圆
+                    if (rotationAngle >= 180 && leftHalfCircle.style.opacity === '0') {
+                        leftHalfCircle.style.opacity = '1';
+                    }
+                    
+                    // 当旋转到360度时，显示完整圆
+                    if (rotationAngle >= 360) {
+                        fullCircle.style.opacity = '1';
+                    }
+                    
+                    if (rotationAngle < 360) {
+                        animationId = requestAnimationFrame(animateRotation);
+                    }
+                }
+                
+                animationId = requestAnimationFrame(animateRotation);
+            }
+            
+            function startSphereAnimation() {
+                // 创建多个圆形 - 右下到左上轴
+                const numCircles = sphereConfig.numCircles;
+                
+                for (let i = 0; i < numCircles; i++) {
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', '250');
+                    circle.setAttribute('cy', '250');
+                    circle.setAttribute('r', '100');
+                    circle.setAttribute('class', 'sphere-circle');
+                    circle.setAttribute('opacity', '0');
+                    
+                    // 设置不同的旋转角度 - 围绕右下到左上轴
+                    const startAngle = (i / numCircles) * Math.PI - 3;
+                    const endAngle = startAngle + Math.PI; // 每个圆旋转180度到不同的位置
+                    
+                    circle.style.transform = `rotate3d(1, -1, 0, ${startAngle}rad)`;
+                    circle.dataset.startAngle = startAngle;
+                    circle.dataset.endAngle = endAngle;
+                    
+                    sphereCircles.appendChild(circle);
+                    existingCircles.push(circle);
+                }
+                
+                // 逐个显示并旋转圆形
+                existingCircles.forEach((circle, index) => {
+                    setTimeout(() => {
+                        // 显示圆形
+                        circle.style.opacity = '0.7';
+                        
+                        // 开始旋转动画
+                        const startTime = Date.now();
+                        const duration = sphereConfig.rotationDuration;
+                        const startAngle = parseFloat(circle.dataset.startAngle);
+                        const endAngle = parseFloat(circle.dataset.endAngle);
+                        
+                        function rotateCircle() {
+                            const elapsed = Date.now() - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // 计算旋转角度（从初始位置旋转到结束位置）
+                            const rotationAngle = startAngle + progress * (endAngle - startAngle);
+                            
+                            circle.style.transform = `rotate3d(1, -1, 0, ${rotationAngle}rad)`;
+                            
+                            if (progress < 1) {
+                                sphereAnimationId = requestAnimationFrame(rotateCircle);
+                            }
+                        }
+                        
+                        sphereAnimationId = requestAnimationFrame(rotateCircle);
+                        
+                    }, index * sphereConfig.delayBetweenCircles);
+                });
+            }
+            
+            function startSecondSphereAnimation() {
+                // 创建多个圆形 - 左下到右上轴
+                const numCircles = sphereConfig.numCircles;
+                
+                for (let i = 0; i < numCircles; i++) {
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', '250');
+                    circle.setAttribute('cy', '250');
+                    circle.setAttribute('r', '100');
+                    circle.setAttribute('class', 'sphere-circle-2');
+                    circle.setAttribute('opacity', '0');
+                    
+                    // 设置不同的旋转角度 - 围绕左下到右上轴
+                    const startAngle = (i / numCircles) * Math.PI - 3;
+                    const endAngle = startAngle + Math.PI; // 每个圆旋转180度到不同的位置
+                    
+                    circle.style.transform = `rotate3d(1, 1, 0, ${startAngle}rad)`;
+                    circle.dataset.startAngle = startAngle;
+                    circle.dataset.endAngle = endAngle;
+                    
+                    sphereCircles2.appendChild(circle);
+                    existingCircles2.push(circle);
+                }
+                
+                // 逐个显示并旋转圆形
+                existingCircles2.forEach((circle, index) => {
+                    setTimeout(() => {
+                        // 显示圆形
+                        circle.style.opacity = '0.7';
+                        
+                        // 开始旋转动画
+                        const startTime = Date.now();
+                        const duration = sphereConfig.rotationDuration;
+                        const startAngle = parseFloat(circle.dataset.startAngle);
+                        const endAngle = parseFloat(circle.dataset.endAngle);
+                        
+                        function rotateCircle() {
+                            const elapsed = Date.now() - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // 计算旋转角度（从初始位置旋转到结束位置）
+                            const rotationAngle = startAngle + progress * (endAngle - startAngle);
+                            
+                            circle.style.transform = `rotate3d(1, 1, 0, ${rotationAngle}rad)`;
+                            
+                            if (progress < 1) {
+                                sphereAnimationId2 = requestAnimationFrame(rotateCircle);
+                            }
+                        }
+                        
+                        sphereAnimationId2 = requestAnimationFrame(rotateCircle);
+                        
+                    }, index * sphereConfig.delayBetweenCircles);
+                });
+            }
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < 7) {
+                    currentStep++;
+                    updateControls();
+                }
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateControls();
+                }
+            });
+            
+            resetBtn.addEventListener('click', function() {
+                currentStep = 1;
+                updateControls();
+            });
+            
+            updateControls();
+        });
+    </script>
+</body>
+</html>
