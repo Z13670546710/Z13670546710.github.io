@@ -164,7 +164,7 @@ a:hover, a:active, a:visited, a:link, a:focus {
     .text-item:nth-child(3) { width: 140px; }
     .logo { right: 10px; top: 10px; }
     .logo-img { width: 80px; }
-    .logo-text { padding: 8px 10px; font-size: 10px; top: 5px; line-height: 1.4; max-width: 4rem;line-height: 1.8;}
+    .logo-text { padding: 8px 10px; font-size: 10px; top: 5px; line-height: 1.4; max-width: 4.6rem;line-height: 1.8;}
     .content { padding: 20px 10px; }
     .section-title { font-size: 18px; margin-bottom: 10px; padding-bottom: 5px; }
     .abstract-text, .topic-item, .chair-item, .date-item { font-size: 13px; margin-bottom: 6px; }
