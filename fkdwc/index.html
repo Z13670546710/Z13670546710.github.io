@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疯狂动物城主题乐园</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="decoration circle-1"></div>
+    <div class="decoration circle-2"></div>
+    
+    <div class="container">
+        <!-- 导航栏 -->
+        <header>
+            <nav class="navbar">
+                <div class="logo">疯狂动物城</div>
+                <ul class="nav-links">
+                    <li><a class="active" href="./index.html">首页</a></li>
+                    <li><a href="./about.html">关于乐园</a></li>
+                    <li><a href="./tickets.html">角色介绍</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- 轮播图 -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-slide active">
+                    <img src="./images/banner1.jpg" alt="疯狂动物城主题乐园">
+                    <div class="slide-content">
+                        <h2 class="slide-title">欢迎来到<br>疯狂动物城<br>主题乐园</h2>
+                        <p class="slide-subtitle">关注手机，开启奇幻冒险之旅</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-compass"></i> 探索乐园
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-slide">
+                    <img src="./images/banner2.jpg" alt="疯狂动物城游乐设施">
+                    <div class="slide-content">
+                        <h2 class="slide-title">体验刺激<br>游乐设施</h2>
+                        <p class="slide-subtitle">与朱迪和尼克一起探索动物城的秘密</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> 立即购票
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-calendar-alt"></i> 查看活动
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播控制箭头 -->
+            <div class="carousel-arrow prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="carousel-arrow next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <!-- 轮播指示点 -->
+            <div class="carousel-controls">
+                <div class="carousel-dot active" data-slide="0"></div>
+                <div class="carousel-dot" data-slide="1"></div>
+            </div>
+        </div>
+        <section class="info-section">
+            <div class="tMain">
+                <h2 class="section-title">上海迪士尼疯狂动物城</h2>
+                <p>上海迪士尼疯狂动物城简介</p>
+            </div>
+            
+            <!-- 信息简介 -->
+            <div class="intro-content">
+                <div class="intro-image">
+                    <img src="./images/a2.webp" alt="疯狂动物城全景">
+                </div>
+                <div class="intro-text">
+                    <h3>奇幻冒险之旅</h3>
+                    <p>上海迪士尼疯狂动物城主题园区是全球首个以迪士尼动画电影《疯狂动物城》为主题的沉浸式乐园，将电影中的奇幻世界完美还原。</p>
+                    <p>园区占地面积超过5万平方米，包含四大主题区域，每个区域都精心设计了独特的建筑风格、游乐设施和互动体验，让游客仿佛置身于动物城的奇幻世界。</p>
+                    <p>在这里，您可以与朱迪警官和尼克狐一起破案，体验刺激的追逐游戏，探索动物城各个区域的独特魅力，感受不同动物居民的生活方式。</p>
+                </div>
+            </div>
+            
+            <!-- 四大主题区域 -->
+            <div class="tMain">
+                <h2 class="section-title">四大主题区域</h2>
+                <p>每个区域都有独特的动物居民和精彩体验</p>
+            </div>
+            <div class="themes-grid">
+                <!-- 区域1 -->
+                <div class="theme-card">
+                    <div class="theme-image">
+                        <img src="./images/c1.webp" alt="撒哈拉广场">
+                    </div>
+                    <div class="theme-content">
+                        <h3 class="theme-title">
+                            撒哈拉广场
+                        </h3>
+                        <p class="theme-description">沙漠主题区域，灵感来自电影中的撒哈拉广场。这里有着独特的沙漠建筑风格，是沙漠动物们的家园。主要景点包括"沙漠旋风"过山车和"骆驼商队"互动体验区。</p>
+                    </div>
+                </div>
+                
+                <!-- 区域2 -->
+                <div class="theme-card">
+                    <div class="theme-image">
+                        <img src="./images/c2.webp" alt="雨林区">
+                    </div>
+                    <div class="theme-content">
+                        <h3 class="theme-title">
+                            雨林区
+                        </h3>
+                        <p class="theme-description">热带雨林主题区域，充满了茂密的植被和瀑布。这里是雨林动物的家园，游客可以体验"树顶探险"和"河流漂流"等刺激项目，感受雨林的神秘与生机。</p>
+                    </div>
+                </div>
+                
+                <!-- 区域3 -->
+                <div class="theme-card">
+                    <div class="theme-image">
+                        <img src="./images/c3.webp" alt="冰川镇">
+                    </div>
+                    <div class="theme-content">
+                        <h3 class="theme-title">
+                            冰川镇
+                        </h3>
+                        <p class="theme-description">冰雪主题区域，灵感来自电影中的冰川镇。这里有冰雪覆盖的建筑和滑冰场，是极地动物的家园。主要景点包括"冰雪滑道"和"北极光剧场"。</p>
+                    </div>
+                </div>
+                
+                <!-- 区域4 -->
+                <div class="theme-card">
+                    <div class="theme-image">
+                        <img src="./images/c4.webp" alt="市中心">
+                    </div>
+                    <div class="theme-content">
+                        <h3 class="theme-title">
+                            市中心
+                        </h3>
+                        <p class="theme-description">现代都市主题区域，还原了电影中繁华的动物城市中心。这里有警察局、市政厅等标志性建筑，游客可以体验"警车追逐"和"城市观光"等项目，感受大都市的活力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>版权所有：上海迪士尼疯狂动物城
+        </p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 轮播图功能
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const prevBtn = document.querySelector('.carousel-arrow.prev');
+            const nextBtn = document.querySelector('.carousel-arrow.next');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // 切换到指定幻灯片
+            function goToSlide(n) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = (n + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            // 下一张幻灯片
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // 上一张幻灯片
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+            
+            // 开始自动轮播
+            function startSlideShow() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // 停止自动轮播
+            function stopSlideShow() {
+                clearInterval(slideInterval);
+            }
+            
+            // 事件监听
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                stopSlideShow();
+                startSlideShow();
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                stopSlideShow();
+                startSlideShow();
+            });
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    goToSlide(slideIndex);
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            });
+            
+            // 鼠标悬停时暂停轮播
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', stopSlideShow);
+            carouselContainer.addEventListener('mouseleave', startSlideShow);
+            
+            // 按钮点击效果
+            const buttons = document.querySelectorAll('.btn, .ticket-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 800);
+                });
+            });
+            
+            // 初始化轮播
+            startSlideShow();
+        });
+    </script>
+</body>
+</html>
