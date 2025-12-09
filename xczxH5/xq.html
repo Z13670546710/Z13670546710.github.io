@@ -450,7 +450,7 @@
           </div>
         </div>
         
-        <div class="galleryItem">
+        <div class="galleryItem"> 
           <div class="galleryImage">   <img src="./images/g2.jpg" alt=""></div>
           <div class="imageOverlay">
             <h4 class="imageTitle">自动化灌溉系统</h4>
@@ -671,57 +671,57 @@
     });
     
     // 4. 图片点击放大效果
-    const galleryItems = document.querySelectorAll('.galleryItem');
-    galleryItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const title = this.querySelector('.imageTitle').textContent;
-        const modal = document.createElement('div');
-        modal.style.cssText = `
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0,0,0,0.8);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-          animation: fadeIn 0.3s ease;
-        `;
+    // const galleryItems = document.querySelectorAll('.galleryItem');
+    // galleryItems.forEach(item => {
+    //   item.addEventListener('click', function() {
+    //     const title = this.querySelector('.imageTitle').textContent;
+    //     const modal = document.createElement('div');
+    //     modal.style.cssText = `
+    //       position: fixed;
+    //       top: 0;
+    //       left: 0;
+    //       right: 0;
+    //       bottom: 0;
+    //       background: rgba(0,0,0,0.8);
+    //       display: flex;
+    //       align-items: center;
+    //       justify-content: center;
+    //       z-index: 1000;
+    //       animation: fadeIn 0.3s ease;
+    //     `;
         
-        modal.innerHTML = `
-          <div style="
-            max-width: 90%;
-            max-height: 90%;
-            animation: scaleIn 0.3s ease;
-            text-align: center;
-          ">
-            <div style="
-              background: linear-gradient(45deg, #4CAF50, #2E7D32);
-              color: white;
-              padding: 100px;
-              border-radius: 10px;
-              font-size: 1.5rem;
-            ">
-              ${title}
-            </div>
-            <div style="color: white; margin-top: 20px;">${title} - 智慧农业示范园</div>
-            <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
-              background: rgba(255,255,255,0.2);
-              color: white;
-              border: 1px solid rgba(255,255,255,0.3);
-              padding: 10px 25px;
-              border-radius: 5px;
-              margin-top: 20px;
-              cursor: pointer;
-            ">关闭</button>
-          </div>
-        `;
+    //     modal.innerHTML = `
+    //       <div style="
+    //         max-width: 90%;
+    //         max-height: 90%;
+    //         animation: scaleIn 0.3s ease;
+    //         text-align: center;
+    //       ">
+    //         <div style="
+    //           background: linear-gradient(45deg, #4CAF50, #2E7D32);
+    //           color: white;
+    //           padding: 100px;
+    //           border-radius: 10px;
+    //           font-size: 1.5rem;
+    //         ">
+    //           ${title}
+    //         </div>
+    //         <div style="color: white; margin-top: 20px;">${title} - 智慧农业示范园</div>
+    //         <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
+    //           background: rgba(255,255,255,0.2);
+    //           color: white;
+    //           border: 1px solid rgba(255,255,255,0.3);
+    //           padding: 10px 25px;
+    //           border-radius: 5px;
+    //           margin-top: 20px;
+    //           cursor: pointer;
+    //         ">关闭</button>
+    //       </div>
+    //     `;
         
-        document.body.appendChild(modal);
-      });
-    });
+    //     document.body.appendChild(modal);
+    //   });
+    // });
   });
 </script>
 </body>
