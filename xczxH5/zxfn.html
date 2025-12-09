@@ -1,125 +1,286 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-  <title>乡村振兴</title>
-</head>
-<body>
-    <div class="nav_Top"></div>
-    <nav class="navbar Width1340 navbar-expand-lg">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-              <img src="./images/logo.jpg">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
-                      <a class="nav-link" href="./index.html">首页</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="./ncjy.html">农村教育</a>
-                  </li>
-                  <li class="nav-item hover">
-                      <a class="nav-link" href="./zxfn.html">振兴方案</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./jcrw.html">杰出人物</a>
-                </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="./lxwm.html">联系我们</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-  </nav>
-  <div class="banner"></div>
-  <section class="single-plant">
-    <div class="container-fluid px-4">
-        <div class="single-wrapper">
-          <h2 class="text-center mb_border mb-5"><span>乡村振兴实施方案</span></h2>
-          <div class="row g-4">
-              <div class="col-lg-6">
-                  <div class="single-item">
-                      <h3>《乡村建设行动实施方案》</h3>
-                      <p>该方案明确了乡村建设行动的总体要求、工作原则、主要目标以及重点任务。其中，总体要求是以习近平新时代中国特色社会主义思想为指导，坚持农业农村优先发展，把乡村建设摆在社会主义现代化建设的重要位置，顺应农民群众对美好生活的向往，以普惠性、基础性、兜底性民生建设为重点，加强农村基础设施和公共服务体系建设‌</p>
-                      <div class="single-image">
-                          <img src="./images/i6.jpg" class="img-fluid">
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-6">
-                  <div class="single-item">
-                      <h3>《国家乡村振兴战略规划》</h3>
-                      <p>
-                        科学制定规划，健全城乡融合发展体制机制，依靠改革创
-                        新壮大乡村发展新动能。推进农业供给侧结构性改革。促
-                        进农林牧渔业和种业创新发展，加快建设现代农业产业园
-                        和特色农产品优势区，稳定和优化粮食生产。</p>
-                      <div class="single-image">
-                          <img src="./images/i7.jpg"  class="img-fluid">
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="row g-4 mt-4">
-              <div class="col-lg-6">
-                  <div class="single-item">
-                      <h3>《乡村振兴战略计划》</h3>
-                      <p>‌《乡村振兴战略规划(2018-2022年)》是中共中央、国务院为实施乡村振兴战略制定的第一个五年规划‌‌。该规划由中央农村工作领导小组办公室提出，旨在指导全国各族人民更好地推进乡村振兴战略的实施‌。</p>
-                      <div class="single-image">
-                          <img src="./images/i8.jpg" class="img-fluid">
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-6">
-                  <div class="single-item">
-                      <h3>《‌乡村振兴实施方案》</h3>
-                      <p>全面落实关于“三农”工作的重要论述，坚持农业农村优先发展，把乡村建设摆在社会主义现代化建设的重要位置‌。以习近平新时代中国特色社会主义思想为指导，增强“四个意识”、坚定“四个自信”、做到“两个维护”，举全党全社会之力全面推进乡村振兴‌。</p>
-                      <div class="single-image">
-                          <img src="./images/i6.jpg" class="img-fluid">
-                      </div>
-                  </div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <!-- 引入Animate.css动画库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>乡村振兴</title>
+    </head>
+    <body>
+        <!-- 页面加载进度条 -->
+        <div class="loading-animation" id="loadingBar"></div>
+        
+        <div class="nav_Top"></div>
+        <nav class="navbar Width1340 navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./images/logo.jpg">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./index.html">首页</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./ncjy.html">农村教育</a>
+                    </li>
+                    <li class="nav-item hover">
+                        <a class="nav-link" href="./zxfn.html">振兴方案</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cgzs.html"> 成果展示</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cyxn.html"> 产业兴农</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./styj.html">生态宜居</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lxwm.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="banner"></div>
+    
+    <!-- 主要内容区域 -->
+    <section class="single-plant" id="mainContent">
+        <div class="container-fluid px-4">
+            <div class="single-wrapper">
+            <h2 class="text-center mb_border " id="pageTitle"><span>乡村振兴实施方案</span></h2>
+            <div class="row g-4" id="firstRow">
+                <div class="col-lg-6">
+                    <div class="single-item" id="item1">
+                        <h3>《乡村建设行动实施方案》</h3>
+                        <p>该方案明确了乡村建设行动的总体要求、工作原则、主要目标以及重点任务。其中，总体要求是以习近平新时代中国特色社会主义思想为指导，坚持农业农村优先发展，把乡村建设摆在社会主义现代化建设的重要位置，顺应农民群众对美好生活的向往，以普惠性、基础性、兜底性民生建设为重点，加强农村基础设施和公共服务体系建设‌</p>
+                        <div class="single-image">
+                            <img src="./images/i6.jpg" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-item" id="item2">
+                        <h3>《国家乡村振兴战略规划》</h3>
+                        <p>
+                            科学制定规划，健全城乡融合发展体制机制，依靠改革创
+                            新壮大乡村发展新动能。推进农业供给侧结构性改革。促
+                            进农林牧渔业和种业创新发展，加快建设现代农业产业园
+                            和特色农产品优势区，稳定和优化粮食生产。</p>
+                        <div class="single-image">
+                            <img src="./images/i7.jpg"  class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-4" id="secondRow">
+                <div class="col-lg-6">
+                    <div class="single-item" id="item3">
+                        <h3>《乡村振兴战略计划》</h3>
+                        <p>‌《乡村振兴战略规划(2018-2022年)》是中共中央、国务院为实施乡村振兴战略制定的第一个五年规划‌‌。该规划由中央农村工作领导小组办公室提出，旨在指导全国各族人民更好地推进乡村振兴战略的实施‌。</p>
+                        <div class="single-image">
+                            <img src="./images/i8.jpg" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-item" id="item4">
+                        <h3>《‌乡村振兴实施方案》</h3>
+                        <p>全面落实关于"三农"工作的重要论述，坚持农业农村优先发展，把乡村建设摆在社会主义现代化建设的重要位置‌。以习近平新时代中国特色社会主义思想为指导，增强"四个意识"、坚定"四个自信"、做到"两个维护"，举全党全社会之力全面推进乡村振兴‌。</p>
+                        <div class="single-image">
+                            <img src="./images/i6.jpg" class="img-fluid">
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<footer class="footer">
-  <div class="footer-wrapper">
-      <div class="footer-nav">
-          <div class="footer-section">
-              <h3>网站导航</h3>
-              <ul class="footer-links">
-                  <li><a href="./index.html">首页</a></li>
-                  <li><a href="./ncjy.html">农村教育</a></li>
-                  <li><a href="./zxfn.html">振兴方案</a></li>
-                  <li><a href="./lxwm.html">联系我们</a></li>
-              </ul>
-          </div>
-          <div class="footer-section">
-              <h3>详情信息</h3>
-              <ul class="footer-links">
-                  <li><a href="#">
-                    网站宗旨：本网站免费服务于中国乡村振兴事业！
-                    </a></li>
-                  <li><a href="#">手机号：1233456789</a></li>
-                  <li><a href="#">邮箱号：aaa@qq.com</a></li>
-                  <li><a href="#">公众号：乡村振兴公众号</a></li>
-              </ul>
-          </div>
-      </div>
-  </div>
-  <p class="footer_bom">
-      Copyright © 2024.国家乡村振兴.
-  </p>
-</footer>
-<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-nav">
+                <div class="footer-section">
+                    <h3>网站导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">首页</a></li>
+                        <li><a href="./ncjy.html">农村教育</a></li>
+                        <li><a href="./zxfn.html">振兴方案</a></li>
+                        <li><a href="./lxwm.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>详情信息</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">
+                        网站宗旨：本网站免费服务于中国乡村振兴事业！
+                        </a></li>
+                        <li><a href="#">手机号：1233456789</a></li>
+                        <li><a href="#">邮箱号：aaa@qq.com</a></li>
+                        <li><a href="#">公众号：乡村振兴公众号</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="footer_bom">
+            Copyright © 国家乡村振兴.
+        </p>
+      </footer><audio src="./music/1.mp3" autoplay="autoplay" style="display: none;" controls="controls" loop="loop"></audio>
+    
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 页面加载完成后执行动画
+        document.addEventListener('DOMContentLoaded', function() {
+        // 显示加载动画
+        const loadingBar = document.getElementById('loadingBar');
+        loadingBar.style.transition = 'transform 1s ease';
+        loadingBar.style.transform = 'translateX(0)';
+        
+        // 加载完成后隐藏进度条并开始内容动画
+        setTimeout(() => {
+            loadingBar.style.transform = 'translateX(100%)';
+            
+            // 开始内容动画
+            setTimeout(() => {
+            startContentAnimations();
+            }, 300);
+        }, 800);
+        });
+        
+        // 滚动到内容区域时触发动画
+        window.addEventListener('scroll', function() {
+        startContentAnimations();
+        });
+        
+        // 内容动画函数
+        function startContentAnimations() {
+        const contentSection = document.getElementById('mainContent');
+        const rect = contentSection.getBoundingClientRect();
+        
+        // 当内容区域进入视口时开始动画
+        if (rect.top < window.innerHeight - 100) {
+            // 标题动画
+            const title = document.getElementById('pageTitle');
+            if (!title.classList.contains('animated-border')) {
+            title.classList.add('animated-border');
+            }
+            
+            // 第一行卡片动画
+            const firstRow = document.getElementById('firstRow');
+            if (!firstRow.classList.contains('animated')) {
+            firstRow.classList.add('animated');
+            
+            // 添加卡片动画类
+            setTimeout(() => {
+                const items = firstRow.querySelectorAll('.single-item');
+                items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animated');
+                }, index * 200);
+                });
+            }, 300);
+            }
+            
+            // 第二行卡片动画
+            const secondRow = document.getElementById('secondRow');
+            if (!secondRow.classList.contains('animated')) {
+            secondRow.classList.add('animated');
+            
+            // 添加卡片动画类
+            setTimeout(() => {
+                const items = secondRow.querySelectorAll('.single-item');
+                items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animated');
+                }, index * 200);
+                });
+            }, 500);
+            }
+        }
+        }
+        
+        // 鼠标悬停交互效果
+        document.querySelectorAll('.single-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+        });
+        
+        // 图片点击放大效果
+        document.querySelectorAll('.single-image img').forEach(img => {
+        img.addEventListener('click', function() {
+            const src = this.src;
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            cursor: pointer;
+            `;
+            
+            const enlargedImg = document.createElement('img');
+            enlargedImg.src = src;
+            enlargedImg.style.cssText = `
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+            `;
+            
+            overlay.appendChild(enlargedImg);
+            document.body.appendChild(overlay);
+            
+            // 添加动画效果
+            setTimeout(() => {
+            enlargedImg.style.transform = 'scale(1)';
+            }, 50);
+            
+            // 点击关闭
+            overlay.addEventListener('click', function(e) {
+            if (e.target === overlay || e.target === enlargedImg) {
+                enlargedImg.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                document.body.removeChild(overlay);
+                }, 300);
+            }
+            });
+            
+            // ESC键关闭
+            document.addEventListener('keydown', function closeOnEsc(e) {
+            if (e.key === 'Escape') {
+                enlargedImg.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                document.body.removeChild(overlay);
+                document.removeEventListener('keydown', closeOnEsc);
+                }, 300);
+            }
+            });
+        });
+        });
+        
+        // 页面加载完成后立即检查是否需要触发动画
+        setTimeout(startContentAnimations, 100);
+    </script>
+    </body>
+    </html>

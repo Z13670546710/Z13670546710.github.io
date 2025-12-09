@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <title>智慧农业示范园</title>
+  <style>
+    /* 动画关键帧定义 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes floatAnimation {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    @keyframes rotateIn {
+      from {
+        opacity: 0;
+        transform: rotateY(-180deg);
+      }
+      to {
+        opacity: 1;
+        transform: rotateY(0);
+      }
+    }
+    
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    /* 页面标题动画 */
+    .pageTitle {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin: 40px 0 60px;
+      position: relative;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
+    }
+    
+    .pageTitle::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #4CAF50, #2E7D32, #4CAF50);
+      background-size: 200% 100%;
+      animation: gradientBG 3s ease infinite;
+      border-radius: 2px;
+    }
+    
+    /* 介绍区域动画 */
+    .introSection {
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .introCard {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 50px;
+      opacity: 0;
+      animation: scaleIn 0.8s ease-out 0.6s forwards;
+      transform-origin: center;
+    }
+    
+    .introCard:hover {
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+    
+    .introText {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      text-align: justify;
+      margin-bottom: 0;
+      opacity: 0;
+      animation: fadeInLeft 0.8s ease-out 0.9s forwards;
+    }
+    
+    
+    /* 图片展示区域 */
+    .gallerySection {
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .galleryGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .galleryItem {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.95);
+      animation: scaleIn 0.8s ease-out forwards;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      cursor: pointer;
+      height: 250px;
+    }
+    
+    .galleryItem:nth-child(1) {
+      animation-delay: 2.2s;
+    }
+    
+    .galleryItem:nth-child(2) {
+      animation-delay: 2.4s;
+    }
+    
+    .galleryItem:nth-child(3) {
+      animation-delay: 2.6s;
+    }
+    
+    .galleryImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      background: linear-gradient(45deg, #4CAF50, #2E7D32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+    
+    .galleryItem:hover .galleryImage {
+      transform: scale(1.05);
+    }
+    .galleryImage img{}
+    .imageOverlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 20px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .galleryItem:hover .imageOverlay {
+      transform: translateY(0);
+    }
+    
+    .imageTitle {
+      color: white;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    
+    /* 交互按钮 */
+    .interactionSection {
+      text-align: center;
+      margin: 60px auto;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    
+    .actionBtn {
+      background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+      color: white;
+      border: none;
+      padding: 15px 45px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 2.8s forwards;
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .actionBtn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .actionBtn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .actionBtn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(76, 175, 80, 0.4);
+    }
+    
+    .actionBtn:active {
+      transform: translateY(-2px);
+    }
+    
+    /* 统计卡片 */
+    .statsSection {
+      margin: 80px auto 60px;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .statsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .statCard {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      opacity: 0;
+      animation: rotateIn 0.8s ease-out forwards;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    
+    .statCard:nth-child(1) {
+      animation-delay: 3s;
+    }
+    
+    .statCard:nth-child(2) {
+      animation-delay: 3.2s;
+    }
+    
+    .statCard:nth-child(3) {
+      animation-delay: 3.4s;
+    }
+    
+    .statCard:nth-child(4) {
+      animation-delay: 3.6s;
+    }
+    
+    .statNumber {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #4CAF50;
+      margin-bottom: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .statLabel {
+      color: #666;
+      font-size: 1rem;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .pageTitle {
+        font-size: 2rem;
+        margin: 30px 0 40px;
+      }
+      
+      .introCard {
+        padding: 25px;
+      }
+      
+      .featuresGrid,
+      .galleryGrid,
+      .statsGrid {
+        grid-template-columns: 1fr;
+      }
+      
+      .featureCard,
+      .galleryItem {
+        animation-delay: 0.5s !important;
+      }
+      
+      .actionBtn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="nav_Top"></div>
+    <nav class="navbar Width1340 navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+              <img src="./images/logo.jpg">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item ">
+                      <a class="nav-link" href="./index.html">首页</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./ncjy.html">农村教育</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./zxfn.html">振兴方案</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cgzs.html"> 成果展示</a>
+                </li>
+                <li class="nav-item hover">
+                    <a class="nav-link" href="./cyxn.html"> 产业兴农</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./styj.html">生态宜居</a>
+                </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./lxwm.html">联系我们</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="banner"></div>
+  
+  <!-- 页面内容开始 -->
+  <main>
+    <!-- 页面标题 -->
+    <h1 class="pageTitle">智慧农业示范园</h1>
+    
+    <!-- 介绍区域 -->
+    <section class="introSection">
+      <div class="introCard">
+        <p class="introText">
+          智慧农业示范园是现代农业科技与农业生产深度融合的创新实践基地。我们运用物联网、大数据、人工智能等前沿技术，
+          打造集智能种植、精准灌溉、环境监测、自动化控制于一体的现代化农业示范园区。园区通过科技赋能传统农业，
+          实现生产过程的智能化管理，提高资源利用效率，保障农产品质量安全，为乡村振兴注入科技动力。
+        </p>
+      </div>
+    </section>
+    
+    <!-- 统计区域 -->
+    <section class="statsSection">
+      <h2 class="sectionTitle">示范园成效数据</h2>
+      <div class="statsGrid">
+        <div class="statCard">
+          <div class="statNumber" data-target="40">0</div>
+          <div class="statLabel">节水效率提升</div>
+        </div>
+        
+        <div class="statCard">
+          <div class="statNumber" data-target="30">0</div>
+          <div class="statLabel">产量提升比例</div>
+        </div>
+        
+        <div class="statCard">
+          <div class="statNumber" data-target="500">0</div>
+          <div class="statLabel">日均监测数据</div>
+        </div>
+        
+        <div class="statCard">
+          <div class="statNumber" data-target="100">0</div>
+          <div class="statLabel">技术培训人次</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 图片展示区域 -->
+    <section class="gallerySection">
+      <h2 class="sectionTitle">园区展示</h2>
+      <div class="galleryGrid">
+        <div class="galleryItem">
+          <div class="galleryImage">
+              <img src="./images/g1.jpg" alt="">
+          </div>
+          <div class="imageOverlay">
+            <h4 class="imageTitle">智能温室大棚</h4>
+          </div>
+        </div>
+        
+        <div class="galleryItem">
+          <div class="galleryImage">   <img src="./images/g2.jpg" alt=""></div>
+          <div class="imageOverlay">
+            <h4 class="imageTitle">自动化灌溉系统</h4>
+          </div>
+        </div>
+        
+        <div class="galleryItem">
+          <div class="galleryImage">   <img src="./images/g3.webp" alt=""></div>
+          <div class="imageOverlay">
+            <h4 class="imageTitle">中央控制中心</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 交互区域 -->
+    <section class="interactionSection">
+      <button class="actionBtn" id="visitBtn">
+        <span>预约参观体验</span>
+      </button>
+    </section>
+  </main>
+  
+<footer class="footer">
+  <div class="footer-wrapper">
+      <div class="footer-nav">
+          <div class="footer-section">
+              <h3>网站导航</h3>
+              <ul class="footer-links">
+                  <li><a href="./index.html">首页</a></li>
+                  <li><a href="./ncjy.html">农村教育</a></li>
+                  <li><a href="./zxfn.html">振兴方案</a></li>
+                  <li><a href="./zhny.html">智慧农业</a></li>
+                  <li><a href="./lxwm.html">联系我们</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>详情信息</h3>
+              <ul class="footer-links">
+                  <li><a href="#">
+                    网站宗旨：本网站免费服务于中国乡村振兴事业！
+                    </a></li>
+                  <li><a href="#">手机号：1233456789</a></li>
+                  <li><a href="#">邮箱号：aaa@qq.com</a></li>
+                  <li><a href="#">公众号：乡村振兴公众号</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <p class="footer_bom">
+      Copyright © 国家乡村振兴.
+  </p>
+  </footer><audio src="./music/1.mp3" autoplay="autoplay" style="display: none;" controls="controls" loop="loop"></audio>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  // 页面加载完成后执行动画
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. 数字滚动动画
+    const statNumbers = document.querySelectorAll('.statNumber');
+    
+    statNumbers.forEach(stat => {
+      const target = parseInt(stat.getAttribute('data-target'));
+      const suffix = stat.textContent.includes('%') ? '%' : '';
+      let current = 0;
+      const increment = target / 50;
+      
+      const updateNumber = () => {
+        if (current < target) {
+          current += increment;
+          stat.textContent = Math.min(Math.floor(current), target) + suffix;
+          setTimeout(updateNumber, 30);
+        } else {
+          stat.textContent = target + suffix;
+        }
+      };
+      
+      // 当元素进入视口时开始动画
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateNumber();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(stat);
+    });
+    
+    // 2. 预约按钮交互
+    const visitBtn = document.getElementById('visitBtn');
+    visitBtn.addEventListener('click', function() {
+      const originalText = visitBtn.innerHTML;
+      
+      // 按钮点击动画
+      visitBtn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        visitBtn.style.transform = '';
+      }, 150);
+      
+      // 显示预约表单
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+      `;
+      
+      modal.innerHTML = `
+        <div style="
+          background: white;
+          padding: 40px;
+          border-radius: 15px;
+          max-width: 500px;
+          width: 90%;
+          animation: scaleIn 0.3s ease;
+        ">
+          <h3 style="color: #2c3e50; margin-bottom: 20px;">预约参观示范园</h3>
+          <form id="reservationForm">
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; margin-bottom: 5px; color: #555;">姓名</label>
+              <input type="text" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; margin-bottom: 5px; color: #555;">联系电话</label>
+              <input type="tel" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 5px; color: #555;">预约日期</label>
+              <input type="date" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="submit" style="
+                flex: 1;
+                background: #4CAF50;
+                color: white;
+                border: none;
+                padding: 12px;
+                border-radius: 5px;
+                cursor: pointer;
+              ">提交预约</button>
+              <button type="button" onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
+                flex: 1;
+                background: #f1f1f1;
+                color: #333;
+                border: none;
+                padding: 12px;
+                border-radius: 5px;
+                cursor: pointer;
+              ">取消</button>
+            </div>
+          </form>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // 表单提交处理
+      modal.querySelector('#reservationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 显示成功消息
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          padding: 40px;
+          border-radius: 15px;
+          text-align: center;
+          z-index: 1001;
+          animation: scaleIn 0.3s ease;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        `;
+        successMsg.innerHTML = `
+          <div style="color: #4CAF50; font-size: 3rem; margin-bottom: 20px;">✓</div>
+          <h3 style="color: #2c3e50; margin-bottom: 15px;">预约成功！</h3>
+          <p style="color: #666; margin-bottom: 25px;">我们将在24小时内与您联系确认参观事宜。</p>
+          <button onclick="this.closest('div').remove(); modal.remove();" style="
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+          ">确定</button>
+        `;
+        
+        document.body.appendChild(successMsg);
+      });
+    });
+    
+    // 3. 卡片悬停效果增强
+    const featureCards = document.querySelectorAll('.featureCard');
+    featureCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.featureIcon');
+        icon.style.animation = 'floatAnimation 0.8s ease-in-out';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.featureIcon');
+        icon.style.animation = '';
+        setTimeout(() => {
+          icon.style.animation = 'floatAnimation 4s ease-in-out infinite';
+        }, 100);
+      });
+    });
+    
+    // 4. 图片点击放大效果
+    const galleryItems = document.querySelectorAll('.galleryItem');
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const title = this.querySelector('.imageTitle').textContent;
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.8);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          animation: fadeIn 0.3s ease;
+        `;
+        
+        modal.innerHTML = `
+          <div style="
+            max-width: 90%;
+            max-height: 90%;
+            animation: scaleIn 0.3s ease;
+            text-align: center;
+          ">
+            <div style="
+              background: linear-gradient(45deg, #4CAF50, #2E7D32);
+              color: white;
+              padding: 100px;
+              border-radius: 10px;
+              font-size: 1.5rem;
+            ">
+              ${title}
+            </div>
+            <div style="color: white; margin-top: 20px;">${title} - 智慧农业示范园</div>
+            <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
+              background: rgba(255,255,255,0.2);
+              color: white;
+              border: 1px solid rgba(255,255,255,0.3);
+              padding: 10px 25px;
+              border-radius: 5px;
+              margin-top: 20px;
+              cursor: pointer;
+            ">关闭</button>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
+      });
+    });
+  });
+</script>
+</body>
+</html>

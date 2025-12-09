@@ -19,8 +19,8 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
+               <ul class="navbar-nav me-auto">
+                  <li class="nav-item ">
                       <a class="nav-link" href="./index.html">首页</a>
                   </li>
                   <li class="nav-item">
@@ -29,8 +29,14 @@
                   <li class="nav-item">
                       <a class="nav-link" href="./zxfn.html">振兴方案</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./jcrw.html">杰出人物</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cgzs.html"> 成果展示</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cyxn.html"> 产业兴农</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./styj.html">生态宜居</a>
                 </li>
                   <li class="nav-item hover">
                       <a class="nav-link" href="./lxwm.html">联系我们</a>
@@ -42,37 +48,36 @@
   <div class="banner"></div>
   <section style="background: #fafafa;">
     <section class="localTips navMain Width1340">
-      <h2 class="text-center mb_border mb-5"><span>联系我们</span></h2>
+      <h2 class="text-center mb_border"><span>联系我们</span></h2>
       <ul class="localTipsList localTipsListContcat">
         <li>
-          <!-- <h1 class="l_title ellipsis">Customer Support Reps</h1> -->
+          <!-- 添加图标 -->
           <p class="l_title_b">网站宗旨：本网站免费服务于中国乡村振兴事业！</p>
-          <p class="l_title_b">邮箱号 :info@xxxx.com</p>
+          <p class="l_title_b">邮箱号 : info@xxxx.com</p>
         </li>
         <li>
-          <!-- <h1 class="l_title ellipsis">Store Location</h1> -->
-          <p>手机号 :1234567889</p>
-          <p>公众号 :乡村振兴服务号</p>
+          <p>手机号 : 1234567889</p>
+          <p>公众号 : 乡村振兴服务号</p>
         </li>
       </ul>
     </section>
   </section>
   <section class="contactFormSection">
     <p class="formDescription">请留下你宝贵的留言！</p>
-    <form class="contactForm">
+    <form class="contactForm" id="contactForm">
         <div class="formRow">
             <div class="formGroup">
                 <label for="name">姓名:</label>
-                <input type="text" id="name" name="name" required="">
+                <input type="text" id="name" name="name" required>
             </div>
             <div class="formGroup">
                 <label for="email">邮箱:</label>
-                <input type="email" id="email" name="email" required="">
+                <input type="email" id="email" name="email" required>
             </div>
         </div>
         <div class="formGroup">
             <label for="message">留言内容:</label>
-            <textarea id="message" name="message" rows="6" required=""></textarea>
+            <textarea id="message" name="message" rows="6" required></textarea>
         </div>
 
         <button type="submit" class="formBtn">提交</button>
@@ -104,9 +109,125 @@
       </div>
   </div>
   <p class="footer_bom">
-      Copyright © 2024.国家乡村振兴.
+      Copyright © 国家乡村振兴.
   </p>
-</footer>
+  </footer><audio src="./music/1.mp3" autoplay="autoplay" style="display: none;" controls="controls" loop="loop"></audio>
 <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  // 表单提交交互
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const submitBtn = form.querySelector('.formBtn');
+    const originalText = submitBtn.textContent;
+    
+    // 获取表单数据
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+    
+    // 表单验证
+    if (!formData.name || !formData.email || !formData.message) {
+      form.classList.add('shake');
+      setTimeout(() => form.classList.remove('shake'), 500);
+      return;
+    }
+    
+    // 显示加载状态
+    submitBtn.textContent = '提交中...';
+    submitBtn.disabled = true;
+    submitBtn.style.animation = 'none';
+    
+    // 模拟API调用（实际项目中替换为真实API）
+    setTimeout(() => {
+      // 成功动画
+      submitBtn.textContent = '✓ 提交成功！';
+      submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)';
+      
+      // 显示成功消息
+      const successMsg = document.createElement('div');
+      successMsg.innerHTML = `
+        <div style="
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          padding: 40px;
+          border-radius: 15px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          text-align: center;
+          z-index: 1000;
+          animation: scaleIn 0.5s ease-out;
+        ">
+          <h3 style="color: #4CAF50; margin-bottom: 20px;">✓ 留言提交成功！</h3>
+          <p style="margin-bottom: 10px;">感谢您的留言，我们会尽快与您联系。</p>
+          <p style="margin-bottom: 20px; color: #666;">邮箱：${formData.email}</p>
+          <button onclick="this.parentElement.remove()" 
+                  style="
+                    background: #4CAF50;
+                    color: white;
+                    border: none;
+                    padding: 10px 30px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                  ">
+            关闭
+          </button>
+        </div>
+      `;
+      document.body.appendChild(successMsg);
+      
+      // 3秒后重置表单
+      setTimeout(() => {
+        form.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.animation = 'floatAnimation 3s ease-in-out infinite';
+        submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+        successMsg.remove();
+      }, 3000);
+      
+    }, 1500);
+  });
+  
+  // 输入框焦点动画
+  const inputs = document.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      this.parentElement.style.transform = 'translateY(-2px)';
+    });
+    
+    input.addEventListener('blur', function() {
+      this.parentElement.style.transform = 'translateY(0)';
+    });
+  });
+  
+  // 页面加载完成后添加滚动动画
+  window.addEventListener('load', function() {
+    // 添加滚动触发动画
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+    
+    // 观察所有动画元素
+    document.querySelectorAll('.localTipsList li, .contactFormSection, .formGroup').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  });
+</script>
 </body>
 </html>
