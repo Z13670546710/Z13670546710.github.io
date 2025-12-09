@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <title>小暑 - 农事活动</title>
+</head>
+<body>
+    <div class="nav_Top" style="background-color: var(--primary-color);"></div>
+    <nav class="navbar Width1340 navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./images/logo.png" style="filter: hue-rotate(20deg);">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ncjy.html">节气由来</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./zxfn.html">物候特征</a>
+                    </li>
+                    <li class="nav-item hover">
+                        <a class="nav-link" href="./cgzs.html">农事活动</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cyxn.html">饮食养生</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./styj.html">诗词文化</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lxwm.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="banner"></div>
+    <!-- 农事活动数据统计展示区域 -->
+    <section class="stats-section" style="background-color: #f9f7f2;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">小暑农事数据统计</h2>
+            <p class="section-description animate-on-scroll">掌握时节，科学耕作，保障秋收</p>
+            
+            <div class="stats-container">
+                <div class="stat-card animate-fade-in">
+                    <div class="stat-number" data-target="95">0</div>
+                    <div class="stat-title">作物生长关键期</div>
+                    <div class="stat-desc">早稻灌浆，中稻分蘖</div>
+                </div>
+                
+                <div class="stat-card animate-fade-in-delay">
+                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-title">主要农事活动</div>
+                    <div class="stat-desc">灌水、追肥、除草、防病虫</div>
+                </div>
+                
+                <div class="stat-card animate-fade-in-delay-2">
+                    <div class="stat-number" data-target="28">0</div>
+                    <div class="stat-title">常见病虫害种类</div>
+                    <div class="stat-desc">需重点防治稻飞虱、螟虫</div>
+                </div>
+                
+                <div class="stat-card animate-fade-in-delay-3">
+                    <div class="stat-number" data-target="1500">0</div>
+                    <div class="stat-title">日均需水量(mm)</div>
+                    <div class="stat-desc">加强灌溉，防止伏旱</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 农事活动展示区域 -->
+    <section class="gallery-section" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">小暑农事活动图集</h2>
+            <p class="section-description animate-on-scroll">用影像记录盛夏时节的农耕智慧</p>
+            
+            <div class="gallery-filter animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">全部农事</button>
+                <button class="filter-btn" data-filter="irrigation">灌溉管理</button>
+                <button class="filter-btn" data-filter="fertilizer">施肥追肥</button>
+                <button class="filter-btn" data-filter="pest">病虫害防治</button>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="gallery-item irrigation animate-gallery">
+                    <div class="gallery-image">
+                        <img src="./images/k2.jpg" alt="农田灌溉">
+                        <div class="gallery-overlay">
+                            <h3>农田灌溉管理</h3>
+                            <p>小暑时节，作物需水量大，需及时灌溉</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fertilizer animate-gallery-delay">
+                    <div class="gallery-image">
+                        <img src="./images/k3.webp" alt="施肥追肥">
+                        <div class="gallery-overlay">
+                            <h3>科学施肥追肥</h3>
+                            <p>根据作物生长阶段，合理追施肥料</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item pest animate-gallery-delay-2">
+                    <div class="gallery-image">
+                        <img src="./images/k1.jpg" alt="病虫害防治">
+                        <div class="gallery-overlay">
+                            <h3>病虫害综合防治</h3>
+                            <p>加强监测，及时防治夏季多发病虫害</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item irrigation animate-gallery-delay-3">
+                    <div class="gallery-image">
+                        <img src="./images/k4.webp" alt="田间管理">
+                        <div class="gallery-overlay">
+                            <h3>精细田间管理</h3>
+                            <p>除草、松土，促进作物根系发育</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 详细农事指导区域 -->
+    <section style="background-color: #fef5e7; padding: 60px 0;">
+        <div class="container">
+            <h2 class="text-center mb-4" style="color: var(--secondary-color);">小暑农事指导要点</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border: 1px solid var(--primary-color);">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: var(--primary-color);">水稻管理要点</h5>
+                            <ul class="card-text">
+                                <li><strong>早稻：</strong>处于灌浆结实期，要保持田间湿润，防止断水过早</li>
+                                <li><strong>中稻：</strong>处于分蘖盛期，要适时晒田控制无效分蘖</li>
+                                <li><strong>晚稻：</strong>及时移栽，插后加强管理，促进早发</li>
+                                <li><strong>水分管理：</strong>浅水勤灌，保持田间有适当水层</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border: 1px solid #27ae60;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #27ae60;">旱地作物管理</h5>
+                            <ul class="card-text">
+                                <li><strong>玉米：</strong>处于大喇叭口期，要重施穗肥</li>
+                                <li><strong>大豆：</strong>开花结荚期，需及时中耕除草</li>
+                                <li><strong>棉花：</strong>现蕾开花期，整枝打杈，控制旺长</li>
+                                <li><strong>蔬菜：</strong>加强肥水管理，注意遮阳降温</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border: 1px solid #e74c3c;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #e74c3c;">病虫害防治</h5>
+                            <ul class="card-text">
+                                <li><strong>水稻：</strong>重点防治稻飞虱、二化螟、纹枯病</li>
+                                <li><strong>玉米：</strong>防治玉米螟、粘虫、大小斑病</li>
+                                <li><strong>蔬菜：</strong>防治菜青虫、蚜虫、霜霉病</li>
+                                <li><strong>原则：</strong>预防为主，综合防治，科学用药</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border: 1px solid #8e44ad;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #8e44ad;">农事谚语智慧</h5>
+                            <ul class="card-text">
+                                <li>"小暑一声雷，倒转做黄梅"</li>
+                                <li>"小暑热得透，大暑凉飕飕"</li>
+                                <li>"小暑不栽薯，栽薯白受苦"</li>
+                                <li>"小暑种芝麻，当头一枝花"</li>
+                                <li>"小暑雨如银，大暑雨如金"</li>
+                                <li>"小暑大暑，灌死老鼠"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页面底部CTA -->
+    <section class="cta-section animate-on-scroll" style="background: #f1f1f1;">
+        <div class="container">
+            <h2 class="cta-title">掌握农时，科学耕作</h2>
+            <p class="cta-description">传承千年农耕智慧，学习现代农事技术，共同守护粮食安全</p>
+            <div class="cta-buttons">
+                <a href="./cyxn.html" class="cta-btn primary animate-btn" style="background-color: var(--primary-color); border-color: var(--primary-color);">饮食养生</a>
+                <a href="./index.html" class="cta-btn secondary animate-btn-delay" style="color: var(--primary-color); border-color: var(--primary-color);">返回首页</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer" style="background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);">
+        <div class="footer-wrapper">
+            <div class="footer-nav">
+                <div class="footer-section">
+                    <h3 style="color: #fff;">网站导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="./index.html" style="color: #fff;">首页</a></li>
+                        <li><a href="./ncjy.html" style="color: #fff;">节气由来</a></li>
+                        <li><a href="./zxfn.html" style="color: #fff;">物候特征</a></li>
+                        <li><a href="./lxwm.html" style="color: #fff;">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 style="color: #fff;">节气信息</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" style="color: #fff;">
+                            网站宗旨：传承二十四节气文化，弘扬中华传统智慧！
+                        </a></li>
+                        <li><a href="#" style="color: #fff;">联系邮箱：xiaoshu@24jq.com</a></li>
+                        <li><a href="#" style="color: #fff;">咨询热线：400-888-小暑</a></li>
+                        <li><a href="#" style="color: #fff;">公众号：二十四节气文化</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="footer_bom" style="color: #fff;">
+            版权所有 © 2025 二十四节气文化网 | 小暑专题
+        </p>
+    </footer>
+    
+    <!-- 图片模态框 -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <img src="" alt="" class="modal-image">
+            <div class="modal-caption">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 动画和交互功能
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 统计数字动画
+            initStatsCounter();
+            
+            // 画廊过滤功能
+            initGalleryFilter();
+            
+            // 模态框功能
+            initModal();
+            
+            // 滚动触发动画
+            initScrollAnimations();
+            
+            // 按钮悬停效果
+            initButtonHoverEffects();
+        });
+        
+        // 统计数字动画
+        function initStatsCounter() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            // 创建滚动观察器
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target;
+                        const target = parseInt(statNumber.getAttribute('data-target'));
+                        animateCounter(statNumber, target);
+                        observer.unobserve(statNumber);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+            
+            statNumbers.forEach(stat => {
+                observer.observe(stat);
+            });
+        }
+        
+        // 数字计数动画
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50; // 分成50步完成
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+                
+                // 添加千分位分隔符
+                if (target > 1000) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 30);
+        }
+        
+        // 画廊过滤功能
+        function initGalleryFilter() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 给当前按钮添加active类
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // 过滤画廊项目
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.classList.contains(filter)) {
+                            item.style.display = 'block';
+                            
+                            // 添加出现动画
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 100);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.9)';
+                            
+                            // 等待动画完成后隐藏
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 500);
+                        }
+                    });
+                });
+            });
+            
+            // 点击画廊项目打开模态框
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').getAttribute('src');
+                    const title = this.querySelector('h3').textContent;
+                    const desc = this.querySelector('p').textContent;
+                    
+                    openModal(imgSrc, title, desc);
+                });
+            });
+        }
+        
+        // 模态框功能
+        function initModal() {
+            const modalOverlay = document.getElementById('imageModal');
+            const modalClose = document.querySelector('.modal-close');
+            
+            // 关闭模态框
+            modalClose.addEventListener('click', closeModal);
+            
+            // 点击模态框背景关闭
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            // ESC键关闭模态框
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+        
+        function openModal(imgSrc, title, desc) {
+            const modalOverlay = document.getElementById('imageModal');
+            const modalImage = modalOverlay.querySelector('.modal-image');
+            const modalCaption = modalOverlay.querySelector('.modal-caption');
+            
+            modalImage.setAttribute('src', imgSrc);
+            modalImage.setAttribute('alt', title);
+            modalCaption.querySelector('h3').textContent = title;
+            modalCaption.querySelector('p').textContent = desc;
+            
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+        
+        function closeModal() {
+            const modalOverlay = document.getElementById('imageModal');
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 滚动触发动画
+        function initScrollAnimations() {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        
+                        // 如果是统计卡片区域，触发卡片动画
+                        if (entry.target.classList.contains('stats-section')) {
+                            const statCards = document.querySelectorAll('.stat-card');
+                            statCards.forEach((card, index) => {
+                                setTimeout(() => {
+                                    card.style.animationPlayState = 'running';
+                                }, index * 200);
+                            });
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // 按钮悬停效果增强
+        function initButtonHoverEffects() {
+            const buttons = document.querySelectorAll('.filter-btn, .cta-btn');
+            
+            buttons.forEach(button => {
+                // 鼠标进入效果
+                button.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                // 添加点击涟漪效果
+                button.addEventListener('click', function(e) {
+                    // 创建涟漪元素
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    // 添加涟漪到按钮
+                    this.appendChild(ripple);
+                    
+                    // 移除涟漪元素
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // 添加涟漪样式
+            const style = document.createElement('style');
+            style.textContent = `
+                .ripple {
+                    position: absolute;
+                    border-radius: 50%;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s linear;
+                }
+                
+                @keyframes ripple-animation {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+                
+                .filter-btn, .cta-btn {
+                    position: relative;
+                    overflow: hidden;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>

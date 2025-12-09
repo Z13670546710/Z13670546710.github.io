@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>小暑 - 物候特征</title>
+</head>
+<body>
+    <!-- 页面加载进度条 -->
+    <div class="loading-animation" id="loadingBar"></div>
+    
+    <div class="nav_Top" style="background-color: var(--primary-color);"></div>
+    <nav class="navbar Width1340 navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./images/logo.png" style="filter: hue-rotate(20deg);">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item hover">
+                        <a class="nav-link" href="./index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ncjy.html">节气由来</a>
+                    </li>
+                    <li class="nav-item hover">
+                        <a class="nav-link" href="./zxfn.html">物候特征</a>
+                    </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cgzs.html">农事活动</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cyxn.html">饮食养生</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./styj.html">诗词文化</a>
+                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lxwm.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="banner"></div>
+    
+    <!-- 主要内容区域 - 小暑物候特征 -->
+    <section class="single-plant" id="mainContent" style="background-color: #fef5e7;">
+        <div class="container-fluid px-4">
+            <div class="single-wrapper">
+                <h2 class="text-center mb_border" id="pageTitle" style="color: var(--secondary-color);"><span>小暑三候详解</span></h2>
+                <div class="row g-4" id="firstRow">
+                    <div class="col-lg-6">
+                        <div class="single-item" id="item1" style="border: 1px solid var(--primary-color);">
+                            <h3 style="color: var(--primary-color);">一候：温风至</h3>
+                            <p>小暑时节，大地热气蒸腾，自然界的凉风逐渐被温热的暑风所取代。《月令七十二候集解》曰："温风至，至此而温热之风至此矣。"这标志着盛夏正式来临。</p>
+                            <p><strong>特征表现：</strong></p>
+                            <ul>
+                                <li>空气湿度明显增加，风中带着湿热气息</li>
+                                <li>清晨与傍晚温差缩小，全天温热</li>
+                                <li>草木散发浓郁青气，植物新陈代谢旺盛</li>
+                                <li>风向转为南风，携带海洋湿润空气</li>
+                            </ul>
+                            <p>此时的气温变化标志着农作物进入快速生长期，也为后续的雷雨天气创造了条件。</p>
+                            <div class="single-image">
+                                <img src="./images/i2.jpg" class="img-fluid" alt="温风至景象">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single-item" id="item2" style="border: 1px solid #e74c3c;">
+                            <h3 style="color: #e74c3c;">二候：蟋蟀居宇</h3>
+                            <p>由于地面温度过高，原本在田野间活动的蟋蟀纷纷离开酷热的田野，来到阴凉的庭院墙角下避暑。《诗经·七月》中早有记载："七月在野，八月在宇，九月在户，十月蟋蟀入我床下。"</p>
+                            <p><strong>物候意义：</strong></p>
+                            <ul>
+                                <li>蟋蟀的迁徙标志着地表温度已不适合昆虫活动</li>
+                                <li>反映了动物对极端气候的适应性行为</li>
+                                <li>蟋蟀的鸣叫声成为夏夜的重要特征</li>
+                                <li>古人常以蟋蟀活动判断季节更替</li>
+                            </ul>
+                            <p>蟋蟀避暑的行为提醒人们注意防暑降温，同时也预示着盛夏酷热已经来临。</p>
+                            <div class="single-image">
+                                <img src="./images/j1.webp" class="img-fluid" alt="蟋蟀居宇">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4 mt-4" id="secondRow">
+                    <div class="col-lg-6">
+                        <div class="single-item" id="item3" style="border: 1px solid #27ae60;">
+                            <h3 style="color: #27ae60;">三候：鹰始鸷</h3>
+                            <p>"鸷"意为凶猛，指老鹰因地面气温过高而变得更加凶猛，多在清凉的高空中活动。《礼记·月令》记载："鹰乃学习"，意为幼鹰开始学习飞翔和捕食。</p>
+                            <p><strong>生态观察：</strong></p>
+                            <ul>
+                                <li>鹰类在高空盘旋以避暑，寻找猎物</li>
+                                <li>幼鹰开始离开巢穴，学习飞行技巧</li>
+                                <li>鹰击长空的景象更加频繁</li>
+                                <li>高空空气流动快，温度相对较低</li>
+                            </ul>
+                            <p>鹰的习性变化不仅反映了气温的升高，也体现了生物为适应环境变化而调整行为策略的智慧。</p>
+                            <div class="single-image">
+                                <img src="./images/j2.webp" class="img-fluid" alt="鹰始鸷">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single-item" id="item4" style="border: 1px solid #8e44ad;">
+                            <h3 style="color: #8e44ad;">小暑物候整体特征</h3>
+                            <p>小暑是盛夏的开端，其物候特征鲜明，反映了自然界对暑热的适应与应对。</p>
+                            <p><strong>气候特征：</strong></p>
+                            <ul>
+                                <li>气温显著升高，进入"三伏"的初伏阶段</li>
+                                <li>降水增多，多为雷阵雨，但分布不均</li>
+                                <li>湿度增大，闷热感明显</li>
+                                <li>日照时间达到一年中最长</li>
+                            </ul>
+                            <p><strong>生物响应：</strong></p>
+                            <ul>
+                                <li>植物生长旺盛，光合作用加强</li>
+                                <li>许多动物调整活动时间，避开正午高温</li>
+                                <li>昆虫活跃度达到高峰</li>
+                                <li>水生生物繁殖活动频繁</li>
+                            </ul>
+                            <p>这些物候特征不仅指导着农事活动，也蕴含着人与自然和谐相处的智慧。</p>
+                            <div class="single-image">
+                                <img src="./images/j3.webp" class="img-fluid" alt="小暑整体特征">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 补充物候知识区域 -->
+    <section class="tipcard" style="background-color: #fff5e6;">
+        <div class="container-fluid px-4">
+            <div class="tipcard-wrapper">
+                <h2 class="text-center mb_border" style="color: var(--secondary-color);"><span>小暑物候延伸知识</span></h2>
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <div class="tipcard-card" style="border-top: 4px solid var(--primary-color);">
+                            <h3 style="color: var(--primary-color);">气象物候</h3>
+                            <p>小暑时节，江淮流域梅雨即将结束，盛夏开始，气温升高，并进入伏旱期；而华北、东北地区进入多雨季节，热带气旋活动频繁。</p>
+                            <p>此时常出现的"东边日出西边雨"现象，是典型的夏季对流天气特征。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="tipcard-card" style="border-top: 4px solid #e74c3c;">
+                            <h3 style="color: #e74c3c;">植物物候</h3>
+                            <p>荷花盛开，莲蓬初结，是观赏荷花的最佳时节。木槿、紫薇、茉莉等夏季花卉相继开放。</p>
+                            <p>早稻开始灌浆，中稻分蘖，晚稻插秧。玉米抽雄吐丝，大豆开花结荚。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="tipcard-card" style="border-top: 4px solid #27ae60;">
+                            <h3 style="color: #27ae60;">动物物候</h3>
+                            <p>蝉鸣声起，成为夏日标志性声音。萤火虫开始出现，夜晚可见点点荧光。</p>
+                            <p>青蛙、蜻蜓活动频繁，蚊虫大量繁殖。燕子开始第二次繁殖，哺育幼鸟。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="tipcard-card" style="border-top: 4px solid #8e44ad;">
+                            <h3 style="color: #8e44ad;">农耕物候</h3>
+                            <p>小暑时节，农田管理进入关键期。需加强灌溉，防治病虫害，适时追肥。</p>
+                            <p>民间有"小暑一声雷，倒转做黄梅"的谚语，预示梅雨可能延续。也有"小暑热得透，大暑凉飕飕"的说法。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer" style="background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);">
+        <div class="footer-wrapper">
+            <div class="footer-nav">
+                <div class="footer-section">
+                    <h3 style="color: #fff;">网站导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="./index.html" style="color: #fff;">首页</a></li>
+                        <li><a href="./ncjy.html" style="color: #fff;">节气由来</a></li>
+                        <li><a href="./zxfn.html" style="color: #fff;">物候特征</a></li>
+                        <li><a href="./lxwm.html" style="color: #fff;">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 style="color: #fff;">节气信息</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" style="color: #fff;">
+                            网站宗旨：传承二十四节气文化，弘扬中华传统智慧！
+                        </a></li>
+                        <li><a href="#" style="color: #fff;">联系邮箱：xiaoshu@24jq.com</a></li>
+                        <li><a href="#" style="color: #fff;">咨询热线：400-888-小暑</a></li>
+                        <li><a href="#" style="color: #fff;">公众号：二十四节气文化</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="footer_bom" style="color: #fff;">
+            版权所有 © 2025 二十四节气文化网 | 小暑专题
+        </p>
+    </footer>
+    
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 页面加载完成后执行动画
+        document.addEventListener('DOMContentLoaded', function() {
+            // 显示加载动画
+            const loadingBar = document.getElementById('loadingBar');
+            loadingBar.style.transition = 'transform 1s ease';
+            loadingBar.style.transform = 'translateX(0)';
+            
+            // 加载完成后隐藏进度条并开始内容动画
+            setTimeout(() => {
+                loadingBar.style.transform = 'translateX(100%)';
+                
+                // 开始内容动画
+                setTimeout(() => {
+                    startContentAnimations();
+                }, 300);
+            }, 800);
+        });
+        
+        // 滚动到内容区域时触发动画
+        window.addEventListener('scroll', function() {
+            startContentAnimations();
+        });
+        
+        // 内容动画函数
+        function startContentAnimations() {
+            const contentSection = document.getElementById('mainContent');
+            const rect = contentSection.getBoundingClientRect();
+            
+            // 当内容区域进入视口时开始动画
+            if (rect.top < window.innerHeight - 100) {
+                // 标题动画
+                const title = document.getElementById('pageTitle');
+                if (!title.classList.contains('animated-border')) {
+                    title.classList.add('animated-border');
+                }
+                
+                // 第一行卡片动画
+                const firstRow = document.getElementById('firstRow');
+                if (!firstRow.classList.contains('animated')) {
+                    firstRow.classList.add('animated');
+                    
+                    // 添加卡片动画类
+                    setTimeout(() => {
+                        const items = firstRow.querySelectorAll('.single-item');
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animated');
+                            }, index * 200);
+                        });
+                    }, 300);
+                }
+                
+                // 第二行卡片动画
+                const secondRow = document.getElementById('secondRow');
+                if (!secondRow.classList.contains('animated')) {
+                    secondRow.classList.add('animated');
+                    
+                    // 添加卡片动画类
+                    setTimeout(() => {
+                        const items = secondRow.querySelectorAll('.single-item');
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animated');
+                            }, index * 200);
+                        });
+                    }, 500);
+                }
+            }
+        }
+        
+        // 鼠标悬停交互效果
+        document.querySelectorAll('.single-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // 图片点击放大效果
+        document.querySelectorAll('.single-image img').forEach(img => {
+            img.addEventListener('click', function() {
+                const src = this.src;
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 9999;
+                    cursor: pointer;
+                `;
+                
+                const enlargedImg = document.createElement('img');
+                enlargedImg.src = src;
+                enlargedImg.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                    transform: scale(0.8);
+                    transition: transform 0.5s ease;
+                `;
+                
+                overlay.appendChild(enlargedImg);
+                document.body.appendChild(overlay);
+                
+                // 添加动画效果
+                setTimeout(() => {
+                    enlargedImg.style.transform = 'scale(1)';
+                }, 50);
+                
+                // 点击关闭
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay || e.target === enlargedImg) {
+                        enlargedImg.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            document.body.removeChild(overlay);
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // 页面加载完成后立即检查是否需要触发动画
+        setTimeout(startContentAnimations, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <title>绿豆薏米汤 - 小暑养生食谱</title>
+  <style>
+    
+    /* 动画关键帧定义 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes floatAnimation {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    @keyframes rotateIn {
+      from {
+        opacity: 0;
+        transform: rotateY(-180deg);
+      }
+      to {
+        opacity: 1;
+        transform: rotateY(0);
+      }
+    }
+    
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+    
+    /* 页面标题动画 */
+    .pageTitle {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin: 40px 0 60px;
+      position: relative;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
+    }
+    
+    .pageTitle::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+      background-size: 200% 100%;
+      animation: gradientBG 3s ease infinite;
+      border-radius: 2px;
+    }
+    
+    /* 介绍区域动画 */
+    .introSection {
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .introCard {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 50px;
+      opacity: 0;
+      animation: scaleIn 0.8s ease-out 0.6s forwards;
+      transform-origin: center;
+      border: 2px solid var(--primary-color);
+    }
+    
+    .introCard:hover {
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+    
+    .introText {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555;
+      text-align: justify;
+      margin-bottom: 0;
+      opacity: 0;
+      animation: fadeInLeft 0.8s ease-out 0.9s forwards;
+    }
+    
+    
+    /* 统计卡片 */
+    .statsSection {
+      margin: 80px auto 60px;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .statsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .statCard {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      opacity: 0;
+      animation: rotateIn 0.8s ease-out forwards;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    
+    .statCard:nth-child(1) {
+      animation-delay: 3s;
+      border-top: 4px solid #27ae60;
+    }
+    
+    .statCard:nth-child(2) {
+      animation-delay: 3.2s;
+      border-top: 4px solid #e74c3c;
+    }
+    
+    .statCard:nth-child(3) {
+      animation-delay: 3.4s;
+      border-top: 4px solid #3498db;
+    }
+    
+    .statCard:nth-child(4) {
+      animation-delay: 3.6s;
+      border-top: 4px solid #8e44ad;
+    }
+    
+    .statNumber {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .statLabel {
+      color: #666;
+      font-size: 1rem;
+    }
+    
+    /* 制作步骤 */
+    .stepsSection {
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .stepCard {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      border-left: 6px solid var(--primary-color);
+      opacity: 0;
+      animation: fadeInLeft 0.8s ease-out forwards;
+    }
+    
+    .stepCard:nth-child(1) { animation-delay: 3.8s; }
+    .stepCard:nth-child(2) { animation-delay: 4.0s; }
+    .stepCard:nth-child(3) { animation-delay: 4.2s; }
+    .stepCard:nth-child(4) { animation-delay: 4.4s; }
+    .stepCard:nth-child(5) { animation-delay: 4.6s; }
+    .stepCard:nth-child(6) { animation-delay: 4.8s; }
+    
+    .stepNumber {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    
+    .stepText {
+      display: inline;
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .pageTitle {
+        font-size: 26px;
+        margin: 30px 0 40px;
+      }
+      
+      .introCard {
+        padding: 25px;
+      }
+      
+      .featuresGrid,
+      .galleryGrid,
+      .statsGrid {
+        grid-template-columns: 1fr;
+      }
+      
+      .featureCard,
+      .galleryItem,
+      .stepCard {
+        animation-delay: 0.5s !important;
+      }
+      
+      .actionBtn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  
+  </style>
+</head>
+<body style="background-color: var(--bg-color); color: var(--text-color);">
+    <div class="nav_Top" style="background-color: var(--primary-color);"></div>
+    <nav class="navbar Width1340 navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+              <img src="./images/logo.png" style="filter: hue-rotate(20deg);">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item ">
+                      <a class="nav-link" href="./index.html">首页</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./ncjy.html">节气由来</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./zxfn.html">物候特征</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cgzs.html">农事活动</a>
+                </li>
+                <li class="nav-item hover">
+                    <a class="nav-link" href="./cyxn.html">饮食养生</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./styj.html">诗词文化</a>
+                </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./lxwm.html">联系我们</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="banner"></div>
+  
+  <!-- 页面内容开始 -->
+  <main>
+    <!-- 页面标题 -->
+    <h1 class="pageTitle">绿豆薏米汤 · 小暑养生佳品</h1>
+    
+    <!-- 介绍区域 -->
+    <section class="introSection">
+      <div class="introCard">
+        <p class="introText">
+          绿豆薏米汤是小暑时节最经典的消暑饮品。绿豆性寒，具有清热解毒、消暑利水的功效；薏米性微寒，能够健脾祛湿、清热排脓。两者搭配，既能解暑降温，又能健脾利湿，是小暑时节防治暑湿的最佳选择。这道汤品制作简单，口感清甜，不仅能解渴消暑，还有助于预防夏季常见的痱子、湿疹等皮肤病。
+        </p>
+      </div>
+    </section>
+    
+    
+    <!-- 营养数据 -->
+    <section class="statsSection">
+      <h2 class="sectionTitle text-center" style="color: var(--secondary-color); margin-bottom: 40px;">营养价值分析</h2>
+      <div class="statsGrid">
+        <div class="statCard">
+          <div class="statNumber" data-target="15">0</div>
+          <div class="statLabel">种氨基酸</div>
+        </div>
+        
+        <div class="statCard">
+          <div class="statNumber" data-target="98">0</div>
+          <div class="statLabel">解暑效果(%)</div>
+        </div>
+        
+        <div class="statCard">
+          <div class="statNumber" data-target="200">0</div>
+          <div class="statLabel">卡路里/碗</div>
+        </div>
+        
+        <div class="statCard">
+          <div class="statNumber" data-target="50">0</div>
+          <div class="statLabel">种营养成分</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 制作步骤 -->
+    <section class="stepsSection">
+      <h2 class="sectionTitle text-center" style="color: var(--secondary-color); margin-bottom: 40px;">详细制作步骤</h2>
+      
+      <div class="stepCard">
+        <span class="stepNumber">1</span>
+        <span class="stepText">准备材料：绿豆100克，薏米50克，冰糖适量（根据个人口味），清水1500毫升。</span>
+      </div>
+      
+      <div class="stepCard">
+        <span class="stepNumber">2</span>
+        <span class="stepText">清洗浸泡：将绿豆和薏米分别清洗干净，放入清水中浸泡4小时以上（或隔夜浸泡），这样更容易煮烂。</span>
+      </div>
+      
+      <div class="stepCard">
+        <span class="stepNumber">3</span>
+        <span class="stepText">煮制过程：将浸泡好的绿豆和薏米放入锅中，加入足量清水（约1500毫升），大火煮沸后转小火。</span>
+      </div>
+      
+      <div class="stepCard">
+        <span class="stepNumber">4</span>
+        <span class="stepText">文火慢熬：保持小火煮1小时左右，期间要不时搅拌，防止粘锅，直到豆烂汤稠。</span>
+      </div>
+      
+      <div class="stepCard">
+        <span class="stepNumber">5</span>
+        <span class="stepText">调味出锅：加入适量冰糖，搅拌至完全融化，关火晾凉。</span>
+      </div>
+      
+      <div class="stepCard">
+        <span class="stepNumber">6</span>
+        <span class="stepText">冷藏饮用：放入冰箱冷藏2小时后饮用，口感更佳，消暑效果更好。</span>
+      </div>
+    </section>
+    
+    
+  </main>
+  
+<footer class="footer" style="background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);">
+  <div class="footer-wrapper">
+      <div class="footer-nav">
+          <div class="footer-section">
+              <h3 style="color: #fff;">网站导航</h3>
+              <ul class="footer-links">
+                  <li><a href="./index.html" style="color: #fff;">首页</a></li>
+                  <li><a href="./cyxn.html" style="color: #fff;">饮食养生</a></li>
+                  <li><a href="./cgzs.html" style="color: #fff;">农事活动</a></li>
+                  <li><a href="./lxwm.html" style="color: #fff;">联系我们</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3 style="color: #fff;">养生咨询</h3>
+              <ul class="footer-links">
+                  <li><a href="#" style="color: #fff;">
+                    节气养生 · 健康生活
+                    </a></li>
+                  <li><a href="tel:4008889378" style="color: #fff;">咨询热线：400-888-小暑</a></li>
+                  <li><a href="mailto:yangshneg@24jq.com" style="color: #fff;">养生顾问：yangshneg@24jq.com</a></li>
+                  <li><a href="#" style="color: #fff;">公众号：二十四节气养生</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <p class="footer_bom" style="color: #fff;">
+      版权所有 © 2023 二十四节气养生网 | 小暑专题
+  </p>
+</footer>
+
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  // 页面加载完成后执行动画
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. 数字滚动动画
+    const statNumbers = document.querySelectorAll('.statNumber');
+    
+    statNumbers.forEach(stat => {
+      const target = parseInt(stat.getAttribute('data-target'));
+      const suffix = stat.textContent.includes('%') ? '%' : '';
+      let current = 0;
+      const increment = target / 50;
+      
+      const updateNumber = () => {
+        if (current < target) {
+          current += increment;
+          stat.textContent = Math.min(Math.floor(current), target) + suffix;
+          setTimeout(updateNumber, 30);
+        } else {
+          stat.textContent = target + suffix;
+        }
+      };
+      
+      // 当元素进入视口时开始动画
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateNumber();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(stat);
+    });
+    
+    // 3. 卡片悬停效果增强
+    const featureCards = document.querySelectorAll('.featureCard');
+    featureCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.featureIcon');
+        icon.style.animation = 'pulse 0.8s ease-in-out';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.featureIcon');
+        icon.style.animation = '';
+        setTimeout(() => {
+          icon.style.animation = 'floatAnimation 4s ease-in-out infinite';
+        }, 100);
+      });
+    });
+    
+    // 4. 图片点击放大效果
+    const galleryItems = document.querySelectorAll('.galleryItem');
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        const title = this.querySelector('.imageTitle').textContent;
+        
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.9);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          animation: fadeIn 0.3s ease;
+        `;
+        
+        modal.innerHTML = `
+          <div style="
+            max-width: 90%;
+            max-height: 70%;
+            margin-bottom: 20px;
+            animation: scaleIn 0.3s ease;
+          ">
+            <img src="${imgSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+          <div style="color: white; text-align: center; margin-bottom: 20px;">
+            <h3>${title}</h3>
+            <p>绿豆薏米汤制作过程</p>
+          </div>
+          <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+          ">关闭</button>
+        `;
+        
+        document.body.appendChild(modal);
+      });
+    });
+  });
+  
+  // 打印食谱函数
+  function printRecipe() {
+    const printContent = `
+      <div style="padding: 40px; font-family: Arial, sans-serif;">
+        <h1 style="color: ${getComputedStyle(document.documentElement).getPropertyValue('--primary-color')}; text-align: center;">
+          绿豆薏米汤食谱
+        </h1>
+        <div style="border-top: 2px solid ${getComputedStyle(document.documentElement).getPropertyValue('--primary-color')}; padding-top: 20px;">
+          <h3>食材清单：</h3>
+          <ul>
+            <li>绿豆：100克</li>
+            <li>薏米：50克</li>
+            <li>冰糖：适量</li>
+            <li>清水：1500毫升</li>
+          </ul>
+          
+          <h3>制作步骤：</h3>
+          <ol>
+            <li>绿豆和薏米清洗干净，浸泡4小时</li>
+            <li>放入锅中，加入清水大火煮沸</li>
+            <li>转小火煮1小时至豆烂汤稠</li>
+            <li>加入冰糖搅拌至融化</li>
+            <li>晾凉后冷藏饮用更佳</li>
+          </ol>
+          
+          <h3>养生功效：</h3>
+          <p>清热解毒，健脾祛湿，预防暑病，美容养颜</p>
+          
+          <h3>温馨提示：</h3>
+          <p>脾胃虚寒者不宜过量，孕妇慎用薏米，最好当天饮用</p>
+          
+          <div style="text-align: center; margin-top: 40px; color: #666;">
+            <p>来自：二十四节气养生网 · 小暑专题</p>
+            <p>${new Date().toLocaleDateString()}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>绿豆薏米汤食谱</title>
+          <style>
+            @media print {
+              body { margin: 0; padding: 20px; }
+              @page { margin: 0; }
+            }
+          </style>
+        </head>
+        <body>
+          ${printContent}
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  }
+  
+  // 分享食谱函数
+  function shareRecipe() {
+    if (navigator.share) {
+      navigator.share({
+        title: '绿豆薏米汤 - 小暑养生食谱',
+        text: '小暑时节最佳消暑饮品，清热解毒，健脾祛湿。点击查看详细制作方法！',
+        url: window.location.href,
+      })
+      .then(() => console.log('分享成功'))
+      .catch((error) => console.log('分享失败', error));
+    } else {
+      // 复制链接到剪贴板
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => {
+          alert('食谱链接已复制到剪贴板，您可以粘贴分享给好友！');
+        })
+        .catch(err => {
+          console.error('复制失败: ', err);
+        });
+    }
+  }
+  
+  // 添加动画样式
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .sectionTitle {
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>

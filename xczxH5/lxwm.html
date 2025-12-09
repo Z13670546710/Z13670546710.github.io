@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <title>节气由来 - 二十四节气小暑</title>
+</head>
+<body style="background-color: var(--bg-color); color: var(--text-color);">
+    <div class="nav_Top" style="background-color: var(--primary-color);"></div>
+    <nav class="navbar Width1340 navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+              <img src="./images/logo.png" style="filter: hue-rotate(20deg);">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./index.html">首页</a>
+                  </li>
+                  <li class="nav-item ">
+                      <a class="nav-link" href="./ncjy.html">节气由来</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./zxfn.html">物候特征</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cgzs.html">农事活动</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./cyxn.html">饮食养生</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./styj.html">诗词文化</a>
+                </li>
+                  <li class="nav-item hover">
+                      <a class="nav-link" href="./lxwm.html">联系我们</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="banner" ></div>
+  </div>
+  <section style="background-color: var(--bg-color); color: var(--text-color);">
+    <section class="localTips navMain Width1340">
+      <h2 class="text-center mb_border"><span>联系我们</span></h2>
+      <ul class="localTipsList localTipsListContcat">
+        <li>
+          <!-- 添加图标 -->
+          <p class="l_title_b">网站宗旨：传承二十四节气文化，弘扬中华传统智慧！</p>
+          <p class="l_title_b">邮箱号 : info@xxxx.com</p>
+        </li>
+        <li>
+          <p>手机号 : 400-888-小暑 </p>
+          <p>公众号 : 二十四节气文化 </p>
+        </li>
+      </ul>
+    </section>
+  </section>
+  <section class="contactFormSection"  style="background-color: var(--bg-color); color: var(--text-color);">
+    <p class="formDescription">请留下你宝贵的留言！</p>
+    <form class="contactForm" id="contactForm">
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="name">姓名:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="formGroup">
+                <label for="email">邮箱:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="formGroup">
+            <label for="message">留言内容:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="formBtn">提交</button>
+    </form>
+  </section>
+  <footer class="footer" style="background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);">
+    <div class="footer-wrapper">
+      <div class="footer-nav">
+        <div class="footer-section">
+          <h3 style="color: #fff;">网站导航</h3>
+          <ul class="footer-links">
+            <li><a href="./index.html" style="color: #fff;">首页</a></li>
+            <li><a href="./ncjy.html" style="color: #fff;">节气由来</a></li>
+            <li><a href="./zxfn.html" style="color: #fff;">物候特征</a></li>
+            <li><a href="./lxwm.html" style="color: #fff;">联系我们</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 style="color: #fff;">节气文化</h3>
+          <ul class="footer-links">
+            <li><a href="#" style="color: #fff;">
+              网站宗旨：传承二十四节气文化，弘扬中华传统智慧！
+            </a></li>
+            <li><a href="#" style="color: #fff;">联系邮箱：jqyl@24jq.com</a></li>
+            <li><a href="#" style="color: #fff;">咨询热线：400-888-节气</a></li>
+            <li><a href="#" style="color: #fff;">公众号：二十四节气文化</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="footer_bom" style="color: #fff;">
+      版权所有 © 2025 二十四节气文化网 | 小暑专题
+    </p>
+  </footer>
+  <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 表单提交交互
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const form = this;
+      const submitBtn = form.querySelector('.formBtn');
+      const originalText = submitBtn.textContent;
+      
+      // 获取表单数据
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+      
+      // 表单验证
+      if (!formData.name || !formData.email || !formData.message) {
+        form.classList.add('shake');
+        setTimeout(() => form.classList.remove('shake'), 500);
+        return;
+      }
+      
+      // 显示加载状态
+      submitBtn.textContent = '提交中...';
+      submitBtn.disabled = true;
+      submitBtn.style.animation = 'none';
+      
+      // 模拟API调用（实际项目中替换为真实API）
+      setTimeout(() => {
+        // 成功动画
+        submitBtn.textContent = '✓ 提交成功！';
+        submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)';
+        
+        // 显示成功消息
+        const successMsg = document.createElement('div');
+        successMsg.innerHTML = `
+          <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+            animation: scaleIn 0.5s ease-out;
+          ">
+            <h3 style="color: #4CAF50; margin-bottom: 20px;">✓ 留言提交成功！</h3>
+            <p style="margin-bottom: 10px;">感谢您的留言，我们会尽快与您联系。</p>
+            <p style="margin-bottom: 20px; color: #666;">邮箱：${formData.email}</p>
+            <button onclick="this.parentElement.remove()" 
+                    style="
+                      background: #4CAF50;
+                      color: white;
+                      border: none;
+                      padding: 10px 30px;
+                      border-radius: 5px;
+                      cursor: pointer;
+                    ">
+              关闭
+            </button>
+          </div>
+        `;
+        document.body.appendChild(successMsg);
+        
+        // 3秒后重置表单
+        setTimeout(() => {
+          form.reset();
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.animation = 'floatAnimation 3s ease-in-out infinite';
+          submitBtn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+          successMsg.remove();
+        }, 3000);
+        
+      }, 1500);
+    });
+    
+    // 输入框焦点动画
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'translateY(-2px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'translateY(0)';
+      });
+    });
+    
+    // 页面加载完成后添加滚动动画
+    window.addEventListener('load', function() {
+      // 添加滚动触发动画
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, observerOptions);
+      
+      // 观察所有动画元素
+      document.querySelectorAll('.localTipsList li, .contactFormSection, .formGroup').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
